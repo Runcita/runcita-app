@@ -1,0 +1,7 @@
+{
+  "name": "Runcita",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
