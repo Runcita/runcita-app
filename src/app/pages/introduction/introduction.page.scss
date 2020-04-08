@@ -3,17 +3,22 @@ ion-slides {
 }
 
 .swiper-slide {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .swiper-slide h2 {
-  margin-top: 2.8rem;
+  margin-top: 1rem;
 }
 
 .swiper-slide img {
+  height: 250px;
+  width: 250px;
   max-height: 50%;
   max-width: 80%;
-  margin: 60px 0 40px;
+  margin: 10px 0 10px;
   pointer-events: none;
 }
 
@@ -22,7 +27,7 @@ b {
 }
 
 p {
-  padding: 0 40px;
+  padding: 0 30px;
   font-size: 14px;
   line-height: 1.5;
   color: var(--ion-color-step-600, #60646b);
