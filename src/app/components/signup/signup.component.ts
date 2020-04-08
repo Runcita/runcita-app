@@ -8,11 +8,16 @@ import {User} from '../../models/User';
 })
 export class SignupComponent implements OnInit {
 
-  user = new User();
-  confirmPassword = '';
-  logForm() {
+  public user: User = new User();
+  public confirmPassword: string = '';
+  public customActionSheetOptions: any = {
+    header: 'Selectionnez votre sexe',
+  };
+
+  public signup(): void {
     console.log(this.user);
   }
+
   constructor() {}
 
   ngOnInit() {}

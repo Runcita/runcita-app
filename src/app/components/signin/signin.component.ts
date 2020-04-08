@@ -8,11 +8,13 @@ import {User} from "../../models/User";
 })
 export class SigninComponent implements OnInit {
 
-  user = new User();
-  logForm() {
+  public user: User = new User();
+
+  public signin(): void {
     console.log(this.user);
   }
-  constructor() { }
+
+  constructor() {}
 
   ngOnInit() {}
 

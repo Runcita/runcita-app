@@ -1,4 +1,4 @@
-<form (ngSubmit)="logForm()">
+<form (ngSubmit)="signup()">
   <ion-item>
     <ion-label position="stacked">Nom <ion-text color="danger">*</ion-text></ion-label>
     <ion-input #name="ngModel" required type="text" [(ngModel)]="user.lastName" name="lastName"></ion-input>
@@ -59,7 +59,7 @@
   </div>
   <ion-item>
     <ion-label position="stacked">Sexe <ion-text color="danger">*</ion-text></ion-label>
-    <ion-select required #sexe="ngModel" interface="action-sheet" [(ngModel)]="user.sexe" [ngModelOptions]="{standalone: true}">
+    <ion-select [interfaceOptions]="customActionSheetOptions" cancel-text="Retour" required #sexe="ngModel" interface="action-sheet" [(ngModel)]="user.sexe" [ngModelOptions]="{standalone: true}">
       <ion-select-option [value]="true">Fille</ion-select-option>
       <ion-select-option [value]="false">Garçon</ion-select-option>
     </ion-select>
@@ -72,7 +72,7 @@
   </div>
   <ion-item>
     <ion-label position="stacked">Date de naissance <ion-text color="danger">*</ion-text></ion-label>
-    <ion-datetime required #birthday="ngModel" [(ngModel)]="user.birthday" [ngModelOptions]="{standalone: true}" display-format="DD-MM-YYYY"></ion-datetime>
+    <ion-datetime cancel-text="Retour" done-text="Ok" required #birthday="ngModel" [(ngModel)]="user.birthday" [ngModelOptions]="{standalone: true}" display-format="DD-MM-YYYY"></ion-datetime>
   </ion-item>
   <div class="error-container" *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)">
     <ion-item *ngIf="birthday.errors.required" lines="none">
