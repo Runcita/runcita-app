@@ -19,6 +19,6 @@
       <ion-label style="font-size: small" color="danger">Le mot de passe est requis</ion-label>
     </ion-item>
   </div>
-  <ion-button [disabled]="!(mail.valid && password.valid)" type="submit" expand="block">Se connecter<ion-icon slot="end" name="log-in-outline"></ion-icon></ion-button>
+  <ion-button [disabled]="!(mail.valid && password.valid)" [routerLink]="['/main']" type="submit" expand="block">Se connecter<ion-icon slot="end" name="log-in-outline"></ion-icon></ion-button>
 
 </form>
