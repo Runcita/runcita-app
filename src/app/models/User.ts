@@ -9,4 +9,5 @@ export class User {
     sexe: boolean;
     runningLevel: string;
     birthday: string;
+    city: string;
 }
