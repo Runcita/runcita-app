@@ -17,7 +17,8 @@ export class ProfilePage implements OnInit {
     picture: '../../assets/mock/profile.jpg',
     sexe: false,
     runningLevel: 'gazelle',
-    birthday: '13-04-1999'
+    birthday: '1999-04-13',
+    city: 'Lille'
   });
 
   constructor() { }

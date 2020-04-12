@@ -24,9 +24,10 @@
   </ion-card-header>
   <ion-card-content>
     <p class="desc">{{user.description}}</p>
-    <p><ion-icon name="gift"></ion-icon> {{user.birthday}}</p>
-    <p><ion-icon name="{{user.sexe ? 'woman' : 'man'}}"></ion-icon> {{user.sexe ? 'Fille' : 'Garçon'}}</p>
-    <p><ion-icon name="thermometer"></ion-icon> {{user.runningLevel}}</p>
+    <img class="running-level" src="../../assets/runningLevel/{{user.runningLevel}}.png">
+      <p><ion-icon name="gift"></ion-icon> {{getAge(user.birthday)}} ans</p>
+      <p><ion-icon name="{{user.sexe ? 'woman' : 'man'}}"></ion-icon> {{user.sexe ? 'Fille' : 'Garçon'}}</p>
+      <p><ion-icon name="location-sharp"></ion-icon> {{user.city}}</p>
     <ion-grid class="grid">
       <ion-row>
         <ion-col>
