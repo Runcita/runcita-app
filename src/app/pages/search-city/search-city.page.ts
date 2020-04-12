@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalController} from "@ionic/angular";
-import {CitiesService} from "../../services/cities.service";
+import {ModalController} from '@ionic/angular';
+import {CitiesService} from '../../services/cities.service';
+import {City} from "../../models/City";
 
 @Component({
   selector: 'app-search-city',
@@ -9,31 +10,22 @@ import {CitiesService} from "../../services/cities.service";
 })
 export class SearchCityPage implements OnInit {
 
-  public cities: any = [];
+  public cities: Array<City> = [];
   public search: string;
 
   constructor(public modalCtrl: ModalController, private apiCities: CitiesService) { }
 
-  dismissModal(value) {
+  public dismissModalSearchCity(city: City): void {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
     this.modalCtrl.dismiss({
       'dismissed': true,
-      'city': value
+      'city': city
     });
   }
 
-  input($event) {
-    console.log($event);
-  }
-
-  public getCitiesByName(name): void {
-    this.apiCities.getCities(name).subscribe(cities => {
-      console.log(cities);
-      for(const c of (cities as any)) {
-        this.cities.push(c.nom);
-      }
-    });
+  public getCitiesByName(city: string): void {
+    this.cities = this.apiCities.getCities(city);
   }
 
   ngOnInit() {

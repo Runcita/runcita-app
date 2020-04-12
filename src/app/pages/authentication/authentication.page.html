@@ -11,6 +11,10 @@
         <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
         <ion-label style="font-size: small" color="danger">Le nom est requis</ion-label>
       </ion-item>
+      <ion-item *ngIf="name.errors.minlength" lines="none">
+        <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+        <ion-label style="font-size: small" color="danger">2 caractères minimum</ion-label>
+      </ion-item>
       <ion-item *ngIf="name.errors.pattern" lines="none">
         <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
         <ion-label style="font-size: small" color="danger">Format non valide</ion-label>
@@ -24,6 +28,10 @@
       <ion-item *ngIf="firstName.errors.required" lines="none">
         <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
         <ion-label style="font-size: small" color="danger">Le prénom est requis</ion-label>
+      </ion-item>
+      <ion-item *ngIf="firstName.errors.minlength" lines="none">
+        <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+        <ion-label style="font-size: small" color="danger">2 caractères minimum</ion-label>
       </ion-item>
       <ion-item *ngIf="firstName.errors.pattern" lines="none">
         <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
@@ -46,17 +54,21 @@
     </div>
     <ion-item>
       <ion-label position="stacked">Mot de passe <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input maxlength="50" minlength="8" placeholder="De 8 à 50 caractères" #password="ngModel" required type="password" [(ngModel)]="user.password" name="password"></ion-input>
+      <ion-input maxlength="100" minlength="8" placeholder="De 8 à 100 caractères" #password="ngModel" required type="password" [(ngModel)]="user.password" name="password"></ion-input>
     </ion-item>
     <div class="error-container" *ngIf="password.invalid && (password.dirty || password.touched)">
       <ion-item *ngIf="password.errors.required" lines="none">
         <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
         <ion-label style="font-size: small" color="danger">Le mot de passe est requis</ion-label>
       </ion-item>
+      <ion-item *ngIf="password.errors.minlength" lines="none">
+        <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+        <ion-label style="font-size: small" color="danger">8 caractères minimum</ion-label>
+      </ion-item>
     </div>
     <ion-item>
       <ion-label position="stacked">Confirmation <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input maxlength="50" #confirm="ngModel" required [pattern]="user.password" type="password" [(ngModel)]="confirmPassword" name="confirmPassword"></ion-input>
+      <ion-input maxlength="100" #confirm="ngModel" required [pattern]="user.password" type="password" [(ngModel)]="confirmPassword" name="confirmPassword"></ion-input>
     </ion-item>
     <div class="error-container" *ngIf="confirm.invalid && (confirm.dirty || confirm.touched)">
       <ion-item *ngIf="confirm.errors.required" lines="none">
@@ -70,7 +82,7 @@
     </div>
     <ion-item>
       <ion-label position="stacked">Ville <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input placeholder="Choisir" #city="ngModel" required type="text" readonly [(ngModel)]="user.city" (click)="presentModal()" name="city"></ion-input>
+      <ion-input placeholder="Choisir" #city="ngModel" required type="text" readonly [(ngModel)]="user.city" (click)="modalSearchCity()" name="city"></ion-input>
     </ion-item>
     <div class="error-container" *ngIf="city.invalid && (city.dirty || city.touched)">
       <ion-item *ngIf="city.errors.required" lines="none">

@@ -1,20 +1,19 @@
 <ion-header translucent>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="dismissModal('')"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+      <ion-button (click)="dismissModalSearchCity('')"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title>Ville</ion-title>
   </ion-toolbar>
   <ion-toolbar>
     <p class="subtitle">Ville ou vous courrez d'habitude</p>
-    <ion-searchbar [(ngModel)]="search" (ionInput)="input($event)"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="search"></ion-searchbar>
     <ion-button (click)="getCitiesByName(search)" expand="block">Rechercher</ion-button>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
   <ion-list>
-    <ion-item *ngFor="let city of cities" (click)="dismissModal(city)">{{city}}</ion-item>
+    <ion-item *ngFor="let city of cities" (click)="dismissModalSearchCity(city)">{{city.name}} {{city.postalCodes}}</ion-item>
   </ion-list>
 </ion-content>
