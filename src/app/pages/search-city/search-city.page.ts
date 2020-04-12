@@ -24,8 +24,16 @@ export class SearchCityPage implements OnInit {
     });
   }
 
-  public getCitiesByName(city: string): void {
-    this.cities = this.apiCities.getCities(city);
+  public getCitiesByName(cityName: string): void {
+    this.apiCities.getCities(cityName).subscribe(cities => {
+      cities.forEach((city) => {
+        this.cities.push(Object.assign(new City(), {
+          name: city.nom,
+          postalCodes: city.codesPostaux,
+          code: city.code
+        }));
+      });
+    });
   }
 
   ngOnInit() {

@@ -10,17 +10,7 @@ export class CitiesService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getCities(city: string): Array<City> {
-    let cities: Array<City> = [];
-    this.httpClient.get<Array<any>>(`https://geo.api.gouv.fr/communes?nom=${city}&fields=nom,code,codesPostaux`).subscribe(citiesRes => {
-      citiesRes.forEach((cityRes) => {
-        cities.push(Object.assign(new City(), {
-          name : cityRes.nom,
-          postalCodes: cityRes.codesPostaux,
-          code : cityRes.code
-        }));
-      });
-    });
-    return cities;
+  getCities(city: string): Observable<Array<any>> {
+    return this.httpClient.get<Array<any>>(`https://geo.api.gouv.fr/communes?nom=${city}&fields=nom,code,codesPostaux`)
   }
 }
