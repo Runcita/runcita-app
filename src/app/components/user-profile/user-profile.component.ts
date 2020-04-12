@@ -12,7 +12,15 @@ export class UserProfileComponent implements OnInit {
   public follow: boolean = false;
   public myProfil: boolean = true;
 
-  constructor() { }
+  constructor() {}
+
+  public getAge(str): number {
+    let date = new Date(`${str}T03:00:00`);
+    console.log(date);
+    let diff = Date.now() - date.getTime();
+    let age = new Date(diff);
+    return Math.abs(age.getUTCFullYear() - 1970);
+  }
 
   ngOnInit() {}
 
