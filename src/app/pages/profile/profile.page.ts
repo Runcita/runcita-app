@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/User';
+import {City} from "../../models/City";
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +19,7 @@ export class ProfilePage implements OnInit {
     sexe: false,
     runningLevel: 'gazelle',
     birthday: '1999-04-13',
-    city: 'Lille'
+    city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
   });
 
   constructor() { }

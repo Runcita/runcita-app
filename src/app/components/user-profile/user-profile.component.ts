@@ -14,8 +14,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor() {}
 
-  public getAge(str): number {
-    let date = new Date(`${str}T03:00:00`);
+  public getAge(strDate: string): number {
+    let date = new Date(`${strDate}T03:00:00`);
     console.log(date);
     let diff = Date.now() - date.getTime();
     let age = new Date(diff);
