@@ -14,9 +14,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor() {}
 
-  public getAge(strDate: string): number {
-    let date = new Date(`${strDate}T03:00:00`);
-    console.log(date);
+  public getAge(timestamp: number): number {
+    let date = new Date(timestamp);
     let diff = Date.now() - date.getTime();
     let age = new Date(diff);
     return Math.abs(age.getUTCFullYear() - 1970);

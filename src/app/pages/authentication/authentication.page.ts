@@ -12,6 +12,7 @@ export class AuthenticationPage implements OnInit {
 
   public user: User = new User();
   public confirmPassword: string = '';
+  public choiceBirthday: string;
   public customActionSheetOptions: object = {
     header: 'Selectionnez votre sexe',
   };
@@ -19,6 +20,8 @@ export class AuthenticationPage implements OnInit {
   constructor(public modalController: ModalController) { }
 
   public signup(): void {
+    let date = new Date(this.choiceBirthday);
+    this.user.birthday = date.getTime();
     console.log(this.user);
   }
 
