@@ -8,6 +8,7 @@ import { AuthenticationPageRoutingModule } from './authentication-routing.module
 
 import { AuthenticationPage } from './authentication.page';
 import {IntroductionPageModule} from '../introduction/introduction.module';
+import {SearchCityPageModule} from "../search-city/search-city.module";
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {IntroductionPageModule} from '../introduction/introduction.module';
         FormsModule,
         IonicModule,
         AuthenticationPageRoutingModule,
-        IntroductionPageModule
+        IntroductionPageModule,
+        SearchCityPageModule
     ],
   declarations: [AuthenticationPage]
 })
