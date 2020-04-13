@@ -1,0 +1,42 @@
+<ion-card class="card">
+  <img src="../../assets/mock/lille.jpg">
+  <ion-card-header class="header">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-text class="follow"><ion-text color="primary">36</ion-text><br/>abonnés</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-avatar class="avatar">
+            <img [src]="user.picture">
+          </ion-avatar>
+        </ion-col>
+        <ion-col>
+          <ion-text class="follow"><ion-text color="primary">45</ion-text><br/>abonnements</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button *ngIf="!myProfil" (click)="follow = !follow" fill="{{follow ? 'solid' : 'outline'}}"><ion-icon slot="start" name="{{follow ? 'checkmark' : 'person-add'}}"></ion-icon>Suivre</ion-button>
+    <ion-button *ngIf="myProfil" size="small" fill="outline"><ion-icon slot="start" name="create"></ion-icon>Éditer le profil</ion-button>
+    <ion-card-title>
+      {{user.firstName}} {{user.lastName}}
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p class="desc">{{user.description}}</p>
+    <img class="running-level" src="../../assets/runningLevel/{{user.runningLevel}}.png">
+      <p><ion-icon name="gift"></ion-icon> {{getAge(user.birthday)}} ans</p>
+      <p><ion-icon name="{{user.sexe ? 'woman' : 'man'}}"></ion-icon> {{user.sexe ? 'Fille' : 'Garçon'}}</p>
+      <p><ion-icon name="location-sharp"></ion-icon> {{user.city.name}}</p>
+    <ion-grid class="grid">
+      <ion-row>
+        <ion-col>
+          <ion-chip color="primary" class="chip">13 activités</ion-chip>
+        </ion-col>
+        <ion-col>
+          <ion-chip color="primary" class="chip"><app-rating [readOnly]="true" [average]="4"></app-rating>(7)</ion-chip>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

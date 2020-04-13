@@ -105,7 +105,7 @@
     </div>
     <ion-item>
       <ion-label position="stacked">Date de naissance <ion-text color="danger">*</ion-text></ion-label>
-      <ion-datetime placeholder="Choisir" cancel-text="Retour" done-text="Ok" required #birthday="ngModel" [(ngModel)]="user.birthday" [ngModelOptions]="{standalone: true}" display-format="DD-MM-YYYY"></ion-datetime>
+      <ion-datetime placeholder="Choisir" cancel-text="Retour" done-text="Ok" required #birthday="ngModel" [(ngModel)]="choiceBirthday" [ngModelOptions]="{standalone: true}" display-format="DD-MM-YYYY"></ion-datetime>
     </ion-item>
     <div class="error-container" *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)">
       <ion-item *ngIf="birthday.errors.required" lines="none">

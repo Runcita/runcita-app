@@ -10,6 +10,6 @@ export class User {
     picture: string;
     sexe: boolean;
     runningLevel: string;
-    birthday: string;
+    birthday: number;
     city: City;
 }
