@@ -3,20 +3,20 @@
   <ion-card-header class="header">
     <ion-grid>
       <ion-row>
-        <ion-col (click)="modalFollow()">
-          <ion-text class="follow"><ion-text color="primary">{{nbFollow}}</ion-text><br/>abonnés</ion-text>
+        <ion-col (click)="modalSubscriber()">
+          <ion-text class="follow"><ion-text color="primary">{{nbSubscriber}}</ion-text><br/>abonnés</ion-text>
         </ion-col>
         <ion-col>
           <ion-avatar class="avatar">
             <img [src]="user.picture">
           </ion-avatar>
         </ion-col>
-        <ion-col (click)="modalMyFollow()">
-          <ion-text class="follow"><ion-text color="primary">{{nbMyFollow}}</ion-text><br/>abonnements</ion-text>
+        <ion-col (click)="modalSubscription()">
+          <ion-text class="follow"><ion-text color="primary">{{nbSubscription}}</ion-text><br/>abonnements</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <ion-button *ngIf="!myProfil" (click)="follow = !follow" fill="{{follow ? 'solid' : 'outline'}}"><ion-icon slot="start" name="{{follow ? 'checkmark' : 'person-add'}}"></ion-icon>Suivre</ion-button>
+    <ion-button *ngIf="!myProfil" (click)="subscriber = !subscriber" fill="{{subscriber ? 'solid' : 'outline'}}"><ion-icon slot="start" name="{{subscriber ? 'checkmark' : 'person-add'}}"></ion-icon>Suivre</ion-button>
     <ion-button *ngIf="myProfil" size="small" fill="outline"><ion-icon slot="start" name="create"></ion-icon>Éditer le profil</ion-button>
     <ion-card-title>
       {{user.firstName}} {{user.lastName}}

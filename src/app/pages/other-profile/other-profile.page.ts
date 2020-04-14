@@ -12,7 +12,7 @@ export class OtherProfilePage implements OnInit {
 
   constructor(public modalController: ModalController) { }
 
-  public dismissModalFollow(): void {
+  public dismissModalFollowers(): void {
     this.modalController.dismiss();
   }
 

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FollowPageRoutingModule } from './follow-routing.module';
+import { FollowersPageRoutingModule } from './followers-routing.module';
 
-import { FollowPage } from './follow.page';
+import { FollowersPage } from './followers.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FollowPageRoutingModule,
+    FollowersPageRoutingModule,
   ],
-  declarations: [FollowPage]
+  declarations: [FollowersPage]
 })
-export class FollowPageModule {}
+export class FollowersPageModule {}

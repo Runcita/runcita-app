@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="dismissModalFollow()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+      <ion-button (click)="dismissModalSub()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
     </ion-buttons>
-    <ion-title>{{title}}</ion-title>
+    <ion-title>{{this.subscription ? 'Abonnements de' : 'Abonnés de'}} {{user.firstName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 

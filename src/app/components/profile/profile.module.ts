@@ -4,7 +4,7 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {RatingModule} from "../rating/rating.module";
-import {FollowPageModule} from "../../pages/follow/follow.module";
+import {FollowersPageModule} from "../../pages/followers/followers.module";
 
 @NgModule({
     imports : [
@@ -12,7 +12,7 @@ import {FollowPageModule} from "../../pages/follow/follow.module";
         FormsModule,
         IonicModule,
         RatingModule,
-        FollowPageModule,
+        FollowersPageModule,
     ],
     declarations : [ProfileComponent],
     exports : [ProfileComponent]
