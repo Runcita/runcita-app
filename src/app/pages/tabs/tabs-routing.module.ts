@@ -13,7 +13,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../profile/profile.module').then(m => m.ProfilePageModule)
+              import('../my-profile/my-profile.module').then(m => m.MyProfilePageModule)
           }
         ]
       },
