@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../models/User';
 import {City} from "../../models/City";
+import {ModalController} from "@ionic/angular";
+import {FollowPage} from "../../pages/follow/follow.page";
 
 @Component({
   selector: 'app-profile',
@@ -9,23 +11,47 @@ import {City} from "../../models/City";
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() idUser: number;
-  public user: User;
-  public nbFollow: number = 34;
-  public nbMyFollow: number = 46;
-  public follow: boolean = false;
-  public myProfil: boolean = true;
+    @Input() idUser: number;
+    public user: User;
+    public nbFollow: number = 34;
+    public nbMyFollow: number = 46;
+    public follow: boolean = false;
+    public myProfil: boolean = true;
 
-  constructor() {}
+    constructor(public modalController: ModalController) {}
 
-  public getAge(timestamp: number): number {
+    public getAge(timestamp: number): number {
     let date = new Date(timestamp);
     let diff = Date.now() - date.getTime();
     let age = new Date(diff);
     return Math.abs(age.getUTCFullYear() - 1970);
-  }
+    }
 
-  ngOnInit() {
+    public async modalFollow(): Promise<void> {
+        const modal = await this.modalController.create({
+            component: FollowPage,
+            componentProps : {
+                myFollow : false,
+                user : this.user
+            },
+            swipeToClose: true
+        });
+        return await modal.present();
+    }
+
+    public async modalMyFollow(): Promise<void> {
+        const modal = await this.modalController.create({
+            component: FollowPage,
+            componentProps : {
+                myFollow : true,
+                user : this.user
+            },
+            swipeToClose: true
+        });
+        return await modal.present();
+    }
+
+    ngOnInit() {
     // MOCK
     this.user = Object.assign(new User(), {
       id: 1,
@@ -43,6 +69,6 @@ export class ProfileComponent implements OnInit {
     // vérifier si le profil de l'auth {Auth.id = user.id}
     // récuperer nombre abonnement
     // récuperer nombre abonnés
-  }
+    }
 
 }

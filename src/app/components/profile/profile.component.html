@@ -3,7 +3,7 @@
   <ion-card-header class="header">
     <ion-grid>
       <ion-row>
-        <ion-col>
+        <ion-col (click)="modalFollow()">
           <ion-text class="follow"><ion-text color="primary">{{nbFollow}}</ion-text><br/>abonnés</ion-text>
         </ion-col>
         <ion-col>
@@ -11,7 +11,7 @@
             <img [src]="user.picture">
           </ion-avatar>
         </ion-col>
-        <ion-col>
+        <ion-col (click)="modalMyFollow()">
           <ion-text class="follow"><ion-text color="primary">{{nbMyFollow}}</ion-text><br/>abonnements</ion-text>
         </ion-col>
       </ion-row>
