@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModalSub()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>{{this.subscription ? 'Abonnements de' : 'Abonnés de'}} {{user.firstName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let user of users" (click)="modalOtherProfile(user.id)">
+      <ion-avatar slot="start">
+        <img [src]="user.picture"/>
+      </ion-avatar>
+      <ion-label>{{user.firstName}} {{user.lastName}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

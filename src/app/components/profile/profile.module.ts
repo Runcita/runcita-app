@@ -4,13 +4,15 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {RatingModule} from "../rating/rating.module";
+import {FollowersPageModule} from "../../pages/followers/followers.module";
 
 @NgModule({
     imports : [
         CommonModule,
         FormsModule,
         IonicModule,
-        RatingModule
+        RatingModule,
+        FollowersPageModule,
     ],
     declarations : [ProfileComponent],
     exports : [ProfileComponent]

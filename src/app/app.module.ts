@@ -9,11 +9,22 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
+import {OtherProfilePageModule} from "./pages/other-profile/other-profile.module";
+import {MyProfilePageModule} from "./pages/my-profile/my-profile.module";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    OtherProfilePageModule,
+    MyProfilePageModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,
