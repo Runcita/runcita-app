@@ -3,6 +3,8 @@ import {User} from '../../models/User';
 import {City} from "../../models/City";
 import {ModalController} from "@ionic/angular";
 import {FollowersPage} from "../../pages/followers/followers.page";
+import {Profile} from "../../models/Profile";
+import {RunningLevel} from "../../models/RunningLevel";
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +14,7 @@ import {FollowersPage} from "../../pages/followers/followers.page";
 export class ProfileComponent implements OnInit {
 
     @Input() idUser: number;
-    public user: User;
+    public profile: Profile;
     public nbSubscriber: number = 34;
     public nbSubscription: number = 46;
     public subscriber: boolean = false;
@@ -32,7 +34,7 @@ export class ProfileComponent implements OnInit {
             component: FollowersPage,
             componentProps : {
                 myFollow : false,
-                user : this.user
+                profile : this.profile
             },
             swipeToClose: true
         });
@@ -44,7 +46,7 @@ export class ProfileComponent implements OnInit {
             component: FollowersPage,
             componentProps : {
                 myFollow : true,
-                user : this.user
+                profile : this.profile
             },
             swipeToClose: true
         });
@@ -53,16 +55,15 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
     // MOCK
-    this.user = Object.assign(new User(), {
-        id: 1,
+    this.profile = Object.assign(new Profile(), {
         lastName: 'Landschoot',
         firstName: 'Tony',
-        mail: 'tony.landschoot@outlook.com',
         description: '20yo, Lille, 2* semi et actuellement en prepa marathon',
         picture: '../../assets/mock/profile.jpg',
+        cover: '../../assets/mock/lille.jpg',
         sexe: false,
-        runningLevel: 'gazelle',
-        birthday: '1999-04-13',
+        runningLevel: Object.assign(new RunningLevel(), {name: 'gazelle'}),
+        birthday: 924035243699,
         city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
     });
     // appel api pour récuperer le user via this.id
