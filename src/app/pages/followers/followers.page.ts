@@ -3,6 +3,7 @@ import {City} from "../../models/City";
 import {ModalController} from "@ionic/angular";
 import {User} from "../../models/User";
 import {OtherProfilePage} from "../other-profile/other-profile.page";
+import {Profile} from "../../models/Profile";
 
 @Component({
   selector: 'app-follow',
@@ -12,8 +13,8 @@ import {OtherProfilePage} from "../other-profile/other-profile.page";
 export class FollowersPage implements OnInit {
 
   @Input() subscription: boolean;
-  @Input() user: User;
-  public users: Array<User> = [];
+  @Input() profile: Profile;
+  public users: Array<Profile> = [];
 
   constructor(public modalController: ModalController) { }
 
@@ -36,19 +37,19 @@ export class FollowersPage implements OnInit {
     // récupere soit les abonnées soit les abonnements {this.myFollow}
     // MOCK
     this.users = [
-      Object.assign(new User(), {
+      Object.assign(new Profile(), {
         lastName: 'Liagre',
         firstName: 'Justine',
         id: '2',
         picture: '../../assets/mock/profile.jpg'
       }),
-      Object.assign(new User(), {
+      Object.assign(new Profile(), {
         lastName: 'Landschoot',
         firstName: 'Alicia',
         id: '3',
         picture: '../../assets/mock/profile.jpg'
       }),
-      Object.assign(new User(), {
+      Object.assign(new Profile(), {
         lastName: 'Landschoot',
         firstName: 'Ludovic',
         id: '4',

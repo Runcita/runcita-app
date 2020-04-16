@@ -1,15 +1,8 @@
-import {City} from "./City";
+import {Profile} from "./Profile";
 
 export class User {
     id: number;
-    lastName: string;
-    firstName: string;
-    mail: string;
+    email: string;
     password: string;
-    description: string;
-    picture: string;
-    sexe: boolean;
-    runningLevel: string;
-    birthday: number;
-    city: City;
+    profile: Profile;
 }

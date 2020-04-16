@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/User';
 import {ModalController} from '@ionic/angular';
 import {SearchCityPage} from '../search-city/search-city.page';
+import {Profile} from "../../models/Profile";
+import {City} from "../../models/City";
 
 @Component({
   selector: 'app-authentication',
@@ -10,7 +12,11 @@ import {SearchCityPage} from '../search-city/search-city.page';
 })
 export class AuthenticationPage implements OnInit {
 
-  public user: User = new User();
+  public user: User = Object.assign(new User(), {
+    profile: Object.assign(new Profile(), {
+      city: new City()
+    })
+  });
   public confirmPassword: string = '';
   public choiceBirthday: string;
   public customActionSheetOptions: object = {
@@ -21,7 +27,7 @@ export class AuthenticationPage implements OnInit {
 
   public signup(): void {
     let date = new Date(this.choiceBirthday);
-    this.user.birthday = date.getTime();
+    this.user.profile.birthday = date.getTime();
     console.log(this.user);
   }
 
@@ -32,7 +38,10 @@ export class AuthenticationPage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    this.user.city = data.city.name;
+    this.user.profile.city = Object.assign(new City(), {
+      name: data.city.name,
+      code: data.city.code
+    });
   }
 
   ngOnInit() {

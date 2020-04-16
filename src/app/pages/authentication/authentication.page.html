@@ -4,7 +4,7 @@
   <form (ngSubmit)="signup()">
     <ion-item>
       <ion-label position="stacked">Nom <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input placeholder="De 2 à 20 caractères" #name="ngModel" minlength="2" maxlength="20" required type="text" [(ngModel)]="user.lastName" name="lastName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
+      <ion-input placeholder="De 2 à 20 caractères" #name="ngModel" minlength="2" maxlength="20" required type="text" [(ngModel)]="user.profile.lastName" name="lastName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
     </ion-item>
     <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
       <ion-item *ngIf="name.errors.required" lines="none">
@@ -22,7 +22,7 @@
     </div>
     <ion-item>
       <ion-label position="stacked">Prénom <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input minlength="2" maxlength="20" placeholder="De 2 à 20 caractères" required #firstName="ngModel" type="text"  [(ngModel)]="user.firstName" name="firstName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
+      <ion-input minlength="2" maxlength="20" placeholder="De 2 à 20 caractères" required #firstName="ngModel" type="text"  [(ngModel)]="user.profile.firstName" name="firstName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
     </ion-item>
     <div class="error-container" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
       <ion-item *ngIf="firstName.errors.required" lines="none">
@@ -40,7 +40,7 @@
     </div>
     <ion-item>
       <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input maxlength="70" placeholder="70 caractères maximum" #mail="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="email" [(ngModel)]="user.mail" name="email"></ion-input>
+      <ion-input maxlength="70" placeholder="70 caractères maximum" #mail="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="email" [(ngModel)]="user.email" name="email"></ion-input>
     </ion-item>
     <div class="error-container" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
       <ion-item *ngIf="mail.errors.required" lines="none">
@@ -82,7 +82,7 @@
     </div>
     <ion-item>
       <ion-label position="stacked">Ville <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input placeholder="Choisir" #city="ngModel" required type="text" readonly [(ngModel)]="user.city" (click)="modalSearchCity()" name="city"></ion-input>
+      <ion-input placeholder="Choisir" #city="ngModel" required type="text" readonly [(ngModel)]="user.profile.city.name" (click)="modalSearchCity()" name="city"></ion-input>
     </ion-item>
     <div class="error-container" *ngIf="city.invalid && (city.dirty || city.touched)">
       <ion-item *ngIf="city.errors.required" lines="none">
@@ -92,7 +92,7 @@
     </div>
     <ion-item>
       <ion-label position="stacked">Sexe <ion-text color="danger">*</ion-text></ion-label>
-      <ion-select placeholder="Choisir" [interfaceOptions]="customActionSheetOptions" cancel-text="Retour" required #sexe="ngModel" interface="action-sheet" [(ngModel)]="user.sexe" [ngModelOptions]="{standalone: true}">
+      <ion-select placeholder="Choisir" [interfaceOptions]="customActionSheetOptions" cancel-text="Retour" required #sexe="ngModel" interface="action-sheet" [(ngModel)]="user.profile.sexe" [ngModelOptions]="{standalone: true}">
         <ion-select-option [value]="true">Fille</ion-select-option>
         <ion-select-option [value]="false">Garçon</ion-select-option>
       </ion-select>
