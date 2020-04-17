@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModalDeleteAccount()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Supprimer le compte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card color="danger">
+    <ion-card-header>
+      <ion-card-title>Attention</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Cette action est irréversible. Pour confirmer veuillez écrire SUPPRIMER ci-dessous</p>
+    </ion-card-content>
+  </ion-card>
+  <form (ngSubmit)="deleteAccount()">
+    <ion-item>
+      <ion-label position="stacked">Confirmation <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input required #confirm="ngModel" [(ngModel)]="confirmDelete" pattern="SUPPRIMER" type="text" name="confirm"></ion-input>
+    </ion-item>
+    <ion-button class="button-ok" [disabled]="!(confirm.valid)" type="submit" expand="block" color="danger">Valider</ion-button>
+  </form>
+</ion-content>
