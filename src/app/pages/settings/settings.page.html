@@ -17,7 +17,7 @@
     <ion-item>
       <ion-icon slot="start" name="{{toggleDark ? 'moon' : 'moon-outline'}}"></ion-icon>
       <ion-label>Mode nuit</ion-label>
-      <ion-toggle (ionChange)="onClick($event)" [(ngModel)]="toggleDark"></ion-toggle>
+      <ion-toggle (ionChange)="changeDarkMode($event)" [(ngModel)]="toggleDark"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-icon slot="start" name="{{toggleNotification ? 'notifications' : 'notifications-outline'}}"></ion-icon>

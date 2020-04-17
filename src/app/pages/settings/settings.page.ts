@@ -45,7 +45,7 @@ export class SettingsPage implements OnInit {
     return await modal.present();
   }
 
-  onClick(event) {
+  changeDarkMode(event) {
     document.body.classList.toggle('dark', event.detail.checked);
   }
 
