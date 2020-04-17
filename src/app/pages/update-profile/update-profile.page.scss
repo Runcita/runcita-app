@@ -1,19 +1,15 @@
-.card {
+.card-update {
   box-shadow: none;
   margin: 0;
   text-align: center;
 }
 
-.header {
-  padding-top: 0;
-  padding-bottom: 10px;
-}
-
-.cover {
+.header-cover {
   max-height: 180px;
+  z-index: 1;
 }
 
-.image {
+.image-header {
   filter: brightness(70%);
   -webkit-filter: brightness(70%);
   -moz-filter: brightness(70%);
@@ -22,6 +18,7 @@
 }
 
 .avatar {
+  z-index: 0;
   width: 80px;
   height: 80px;
   margin-bottom: 5px;
@@ -31,5 +28,6 @@
 }
 
 .button-ok {
-  margin-top: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }

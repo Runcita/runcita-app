@@ -8,15 +8,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="card">
-    <img [src]="profileUpdated.cover" class="image cover" (click)="presentAlertCamera(true)">
-    <ion-card-header class="header">
-      <ion-avatar class="avatar" (click)="presentAlertCamera(false)">
-        <img [src]="profileUpdated.picture" class="image">
-      </ion-avatar>
-    </ion-card-header>
+  <ion-card class="card-update">
+    <img [src]="profileUpdated.cover" class="image-header header-cover" (click)="presentAlertCamera(true)">
+    <ion-avatar class="avatar" (click)="presentAlertCamera(false)">
+      <img [src]="profileUpdated.picture" class="image-header">
+    </ion-avatar>
     <ion-card-content class="ion-no-padding">
-      <form (ngSubmit)="update()">
+      <form (ngSubmit)="updateProfile()">
         <ion-item>
           <ion-label position="stacked">Nom <ion-text color="danger">*</ion-text></ion-label>
           <ion-input placeholder="De 2 à 20 caractères" #name="ngModel" minlength="2" maxlength="20" required type="text" [(ngModel)]="profileUpdated.lastName" name="lastName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
@@ -65,7 +63,7 @@
         </div>
         <ion-item>
           <ion-label position="stacked">Sexe <ion-text color="danger">*</ion-text></ion-label>
-          <ion-select placeholder="Choisir" [interfaceOptions]="customActionSheetOptions" cancel-text="Retour" required #sexe="ngModel" interface="action-sheet" [(ngModel)]="profileUpdated.sexe" [ngModelOptions]="{standalone: true}">
+          <ion-select placeholder="Choisir" [interfaceOptions]="customActionSheetSexe" cancel-text="Retour" required #sexe="ngModel" interface="action-sheet" [(ngModel)]="profileUpdated.sexe" [ngModelOptions]="{standalone: true}">
             <ion-select-option [value]="true">Fille</ion-select-option>
             <ion-select-option [value]="false">Garçon</ion-select-option>
           </ion-select>

@@ -1,26 +1,26 @@
 <ion-card class="card">
   <img [src]="profile.cover" class="cover">
+  <ion-grid>
+    <ion-row>
+      <ion-col (click)="modalSubscriber()">
+        <ion-text class="follow"><ion-text color="primary">{{nbSubscriber}}</ion-text><br/>abonnés</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-avatar class="avatar">
+          <img [src]="profile.picture">
+        </ion-avatar>
+      </ion-col>
+      <ion-col (click)="modalSubscription()">
+        <ion-text class="follow"><ion-text color="primary">{{nbSubscription}}</ion-text><br/>abonnements</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button *ngIf="!myProfil" (click)="subscriber = !subscriber" fill="{{subscriber ? 'solid' : 'outline'}}"><ion-icon slot="start" name="{{subscriber ? 'checkmark' : 'person-add'}}"></ion-icon>Suivre</ion-button>
+  <ion-button *ngIf="myProfil" size="small" (click)="modaleUpdateProfile()"><ion-icon slot="start" name="create"></ion-icon>Éditer le profil</ion-button>
   <ion-card-header class="header">
-    <ion-grid>
-      <ion-row>
-        <ion-col (click)="modalSubscriber()">
-          <ion-text class="follow"><ion-text color="primary">{{nbSubscriber}}</ion-text><br/>abonnés</ion-text>
-        </ion-col>
-        <ion-col>
-          <ion-avatar class="avatar">
-            <img [src]="profile.picture">
-          </ion-avatar>
-        </ion-col>
-        <ion-col (click)="modalSubscription()">
-          <ion-text class="follow"><ion-text color="primary">{{nbSubscription}}</ion-text><br/>abonnements</ion-text>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-button *ngIf="!myProfil" (click)="subscriber = !subscriber" fill="{{subscriber ? 'solid' : 'outline'}}"><ion-icon slot="start" name="{{subscriber ? 'checkmark' : 'person-add'}}"></ion-icon>Suivre</ion-button>
-    <ion-button *ngIf="myProfil" size="small" (click)="modaleUpdateProfile()"><ion-icon slot="start" name="create"></ion-icon>Éditer le profil</ion-button>
     <ion-card-title>
-      {{profile.firstName}} {{profile.lastName}}
-    </ion-card-title>
+        {{profile.firstName}} {{profile.lastName}}
+      </ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <p class="desc">{{profile.description}}</p>

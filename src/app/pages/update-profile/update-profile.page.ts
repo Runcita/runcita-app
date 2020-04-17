@@ -14,7 +14,7 @@ import {RunningLevelPage} from "../running-level/running-level.page";
 export class UpdateProfilePage implements OnInit {
 
   @Input() profile: Profile;
-  public customActionSheetOptions: object = {
+  public customActionSheetSexe: object = {
     header: 'Selectionnez votre sexe',
   };
   public choiceBirthday: string;
@@ -26,21 +26,21 @@ export class UpdateProfilePage implements OnInit {
     this.modalController.dismiss();
   }
 
-  public async presentAlertCamera(cover: boolean): Promise<void> {
+  public async presentAlertCamera(isCover: boolean): Promise<void> {
     const alert = await this.alertController.create({
-      header : (cover) ? 'Photo de couverture' : 'Photo de profile',
+      header : (isCover) ? 'Photo de couverture' : 'Photo de profile',
       buttons: [
         {
           text: 'choisir une photo',
           role: 'ok',
           handler: () => {
-            this.addPhoto(cover, 'library');
+            this.changePicture(isCover, 'library');
           }
         },
         {
           text: 'Prendre une photo',
           handler: () => {
-            this.addPhoto(cover, 'camera');
+            this.changePicture(isCover, 'camera');
           }
         }
       ]
@@ -49,7 +49,7 @@ export class UpdateProfilePage implements OnInit {
     await alert.present();
   }
 
-  public update(): void {
+  public updateProfile(): void {
     this.profile = this.profileUpdated;
     this.profile.birthday = new Date(this.choiceBirthday).getTime();
     console.log(this.profile)
@@ -79,17 +79,12 @@ export class UpdateProfilePage implements OnInit {
     this.profileUpdated.runningLevel = data.runningLevel;
   }
 
-  private async addPhoto(cover: boolean, source: string): Promise<void> {
-    let image;
-    if(source === 'library') {
-      image = await this.openLibrary();
-    }else if(source === 'camera') {
-      image = await this.openCamera();
-    }
-    if(cover) {
+  private async changePicture(isCover: boolean, source: string): Promise<void> {
+    const image: string = (source === 'library') ? await this.openLibrary() : await this.openCamera();
+    if(isCover) {
       this.profileUpdated.cover = 'data:image/jpg;base64,' + image;
     }else{
-      this.profileUpdated.picture = 'data:image/jpg;base65;' + image;
+      this.profileUpdated.picture = 'data:image/jpg;base64;' + image;
     }
   }
 
