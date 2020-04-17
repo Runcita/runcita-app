@@ -1,0 +1,33 @@
+.card-update {
+  box-shadow: none;
+  margin: 0;
+  text-align: center;
+}
+
+.header-cover {
+  max-height: 180px;
+  z-index: 1;
+}
+
+.image-header {
+  filter: brightness(70%);
+  -webkit-filter: brightness(70%);
+  -moz-filter: brightness(70%);
+  -o-filter: brightness(70%);
+  -ms-filter: brightness(70%);
+}
+
+.avatar {
+  z-index: 0;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -50px;
+}
+
+.button-ok {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}

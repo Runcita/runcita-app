@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModalRunningLevel()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Niveau de course</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Vous etes plutot</ion-list-header>
+    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('tortue')">
+      <ion-thumbnail slot="start">
+        <img src="../../assets/runningLevel/tortue.png">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>Tortue</h2>
+        <p><ion-icon name="speedometer"></ion-icon> +10km/h</p>
+        <p><ion-icon name="analytics"></ion-icon> 0-5km</p>
+        <p><ion-icon name="today"></ion-icon> De temps en temps</p>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('gazelle')">
+      <ion-thumbnail slot="start">
+        <img src="../../assets/runningLevel/gazelle.png">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>Gazelle</h2>
+        <p><ion-icon name="speedometer"></ion-icon> 8-10km/h</p>
+        <p><ion-icon name="analytics"></ion-icon> 5-10km</p>
+        <p><ion-icon name="today"></ion-icon> Souvent</p>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('lapin')">
+      <ion-thumbnail slot="start">
+        <img src="../../assets/runningLevel/lapin.png">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>Lapin</h2>
+        <p><ion-icon name="speedometer"></ion-icon> 5-8km/h</p>
+        <p><ion-icon name="analytics"></ion-icon> 10-25km</p>
+        <p><ion-icon name="today"></ion-icon> Régulièrement</p>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('panthere')">
+      <ion-thumbnail slot="start">
+        <img src="../../assets/runningLevel/panthere.png">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>Panthère</h2>
+        <p><ion-icon name="speedometer"></ion-icon> -5km/h</p>
+        <p><ion-icon name="analytics"></ion-icon> +25km</p>
+        <p><ion-icon name="today"></ion-icon> Tout le temps</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

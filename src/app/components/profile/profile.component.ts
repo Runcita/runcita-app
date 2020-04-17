@@ -5,6 +5,7 @@ import {ModalController} from "@ionic/angular";
 import {FollowersPage} from "../../pages/followers/followers.page";
 import {Profile} from "../../models/Profile";
 import {RunningLevel} from "../../models/RunningLevel";
+import {UpdateProfilePage} from "../../pages/update-profile/update-profile.page";
 
 @Component({
   selector: 'app-profile',
@@ -46,6 +47,17 @@ export class ProfileComponent implements OnInit {
             component: FollowersPage,
             componentProps : {
                 myFollow : true,
+                profile : this.profile
+            },
+            swipeToClose: true
+        });
+        return await modal.present();
+    }
+
+    public async modaleUpdateProfile(): Promise<void> {
+        const modal = await this.modalController.create({
+            component: UpdateProfilePage,
+            componentProps : {
                 profile : this.profile
             },
             swipeToClose: true

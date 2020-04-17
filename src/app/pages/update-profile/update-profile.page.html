@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModalUpdateProfile()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Modifier votre profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card-update">
+    <img [src]="profileUpdated.cover" class="image-header header-cover" (click)="presentAlertCamera(true)">
+    <ion-avatar class="avatar" (click)="presentAlertCamera(false)">
+      <img [src]="profileUpdated.picture" class="image-header">
+    </ion-avatar>
+    <ion-card-content class="ion-no-padding">
+      <form (ngSubmit)="updateProfile()">
+        <ion-item>
+          <ion-label position="stacked">Nom <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input placeholder="De 2 à 20 caractères" #name="ngModel" minlength="2" maxlength="20" required type="text" [(ngModel)]="profileUpdated.lastName" name="lastName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
+          <ion-item *ngIf="name.errors.required" lines="none">
+            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label style="font-size: small" color="danger">Le nom est requis</ion-label>
+          </ion-item>
+          <ion-item *ngIf="name.errors.minlength" lines="none">
+            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label style="font-size: small" color="danger">2 caractères minimum</ion-label>
+          </ion-item>
+          <ion-item *ngIf="name.errors.pattern" lines="none">
+            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label style="font-size: small" color="danger">Format non valide</ion-label>
+          </ion-item>
+        </div>
+        <ion-item>
+          <ion-label position="stacked">Prénom <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input minlength="2" maxlength="20" placeholder="De 2 à 20 caractères" required #firstName="ngModel" type="text"  [(ngModel)]="profileUpdated.firstName" name="firstName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+          <ion-item *ngIf="firstName.errors.required" lines="none">
+            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label style="font-size: small" color="danger">Le prénom est requis</ion-label>
+          </ion-item>
+          <ion-item *ngIf="firstName.errors.minlength" lines="none">
+            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label style="font-size: small" color="danger">2 caractères minimum</ion-label>
+          </ion-item>
+          <ion-item *ngIf="firstName.errors.pattern" lines="none">
+            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label style="font-size: small" color="danger">Format non valide</ion-label>
+          </ion-item>
+        </div>
+        <ion-item>
+          <ion-label position="stacked">Ville <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input placeholder="Choisir" #city="ngModel" required type="text" readonly [(ngModel)]="profileUpdated.city.name" (click)="modalSearchCity()" name="city"></ion-input>
+        </ion-item>
+        <div class="error-container" *ngIf="city.invalid && (city.dirty || city.touched)">
+          <ion-item *ngIf="city.errors.required" lines="none">
+            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label style="font-size: small" color="danger">Le ville est requise</ion-label>
+          </ion-item>
+        </div>
+        <ion-item>
+          <ion-label position="stacked">Sexe <ion-text color="danger">*</ion-text></ion-label>
+          <ion-select placeholder="Choisir" [interfaceOptions]="customActionSheetSexe" cancel-text="Retour" required #sexe="ngModel" interface="action-sheet" [(ngModel)]="profileUpdated.sexe" [ngModelOptions]="{standalone: true}">
+            <ion-select-option [value]="true">Fille</ion-select-option>
+            <ion-select-option [value]="false">Garçon</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="error-container" *ngIf="sexe.invalid && (sexe.dirty || sexe.touched)">
+          <ion-item *ngIf="sexe.errors.required" lines="none">
+            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label style="font-size: small" color="danger">Le sexe est requis</ion-label>
+          </ion-item>
+        </div>
+        <ion-item>
+          <ion-label position="stacked">Niveau de course</ion-label>
+          <ion-thumbnail slot="end">
+            <img src="../../assets/runningLevel/{{profileUpdated.runningLevel.name}}.png">
+          </ion-thumbnail>
+          <ion-input placeholder="Choisir" type="text" readonly [(ngModel)]="profileUpdated.runningLevel.name" (click)="modalRunningLevel()" name="runningLevel"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Date de naissance <ion-text color="danger">*</ion-text></ion-label>
+          <ion-datetime placeholder="Choisir" cancel-text="Retour" done-text="Ok" required #birthday="ngModel" [(ngModel)]="choiceBirthday" [ngModelOptions]="{standalone: true}" display-format="DD-MM-YYYY"></ion-datetime>
+        </ion-item>
+        <div class="error-container" *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)">
+          <ion-item *ngIf="birthday.errors.required" lines="none">
+            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label style="font-size: small" color="danger">Le date de naissance est requise</ion-label>
+          </ion-item>
+        </div>
+        <ion-item>
+          <ion-label position="floating">Description</ion-label>
+          <ion-textarea [(ngModel)]="profileUpdated.description" rows="3" name="desc"></ion-textarea>
+        </ion-item>
+        <ion-button class="button-ok" [disabled]="!(city.valid && firstName.valid && name.valid && birthday.valid && sexe.valid)" type="submit" expand="block">Enregistrer</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
