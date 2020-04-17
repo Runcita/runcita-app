@@ -20,13 +20,13 @@ export class UpdateProfilePage implements OnInit {
   public choiceBirthday: string;
   public profileUpdated: Profile;
 
-  constructor(public modalController: ModalController, private camera: Camera, public alertController: AlertController) { }
+  constructor(private modalController: ModalController, private camera: Camera, private alertController: AlertController) { }
 
   public dismissModalUpdateProfile(): void {
     this.modalController.dismiss();
   }
 
-  async presentAlertCamera(cover: boolean): Promise<any> {
+  public async presentAlertCamera(cover: boolean): Promise<void> {
     const alert = await this.alertController.create({
       header : (cover) ? 'Photo de couverture' : 'Photo de profile',
       buttons: [
@@ -79,7 +79,7 @@ export class UpdateProfilePage implements OnInit {
     this.profileUpdated.runningLevel = data.runningLevel;
   }
 
-  public async addPhoto(cover: boolean, source: string) {
+  private async addPhoto(cover: boolean, source: string): Promise<void> {
     let image;
     if(source === 'library') {
       image = await this.openLibrary();
@@ -93,7 +93,7 @@ export class UpdateProfilePage implements OnInit {
     }
   }
 
-  public async openCamera(): Promise<string> {
+  private async openCamera(): Promise<string> {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -106,7 +106,7 @@ export class UpdateProfilePage implements OnInit {
     return await this.camera.getPicture(options);
   }
 
-  public async openLibrary(): Promise<string> {
+  private async openLibrary(): Promise<string> {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,

@@ -17,18 +17,6 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./pages/my-profile/my-profile.module').then(m => m.MyProfilePageModule)
-  },
-  {
-    path: 'update-profile',
-    loadChildren: () => import('./pages/update-profile/update-profile.module').then( m => m.UpdateProfilePageModule)
-  },
-  {
-    path: 'running-level',
-    loadChildren: () => import('./pages/running-level/running-level.module').then( m => m.RunningLevelPageModule)
   }
 ];
 @NgModule({
