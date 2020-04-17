@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {OtherProfilePageModule} from "./pages/other-profile/other-profile.module";
 import {MyProfilePageModule} from "./pages/my-profile/my-profile.module";
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import {MyProfilePageModule} from "./pages/my-profile/my-profile.module";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+    Camera,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

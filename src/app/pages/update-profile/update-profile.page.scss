@@ -4,31 +4,17 @@
   text-align: center;
 }
 
-.follow {
-  font-size: 14px;
-}
-
-.grid {
-  text-align: center;
-}
-
-.desc {
-  padding-bottom: 16px;
-}
-
-.details-profile {
-  text-align: left;
-  margin: auto;
-  width: 100px;
-}
-
 .header {
   padding-top: 0;
   padding-bottom: 10px;
 }
 
-.running-level {
-  width: 60px;
+.image {
+  filter: brightness(70%);
+  -webkit-filter: brightness(70%);
+  -moz-filter: brightness(70%);
+  -o-filter: brightness(70%);
+  -ms-filter: brightness(70%);
 }
 
 .avatar {
@@ -40,3 +26,6 @@
   margin-top: -50px;
 }
 
+.button-ok {
+  margin-top: 10%;
+}

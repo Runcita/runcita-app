@@ -1,8 +1,1 @@
-{
-  "appId": "io.ionic.starter",
-  "appName": "Runcita",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "www",
-  "cordova": {}
-}
+{}

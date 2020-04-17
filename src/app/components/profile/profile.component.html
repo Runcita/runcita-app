@@ -17,7 +17,7 @@
       </ion-row>
     </ion-grid>
     <ion-button *ngIf="!myProfil" (click)="subscriber = !subscriber" fill="{{subscriber ? 'solid' : 'outline'}}"><ion-icon slot="start" name="{{subscriber ? 'checkmark' : 'person-add'}}"></ion-icon>Suivre</ion-button>
-    <ion-button *ngIf="myProfil" size="small" fill="outline"><ion-icon slot="start" name="create"></ion-icon>Éditer le profil</ion-button>
+    <ion-button *ngIf="myProfil" size="small" (click)="modaleUpdateProfile()"><ion-icon slot="start" name="create"></ion-icon>Éditer le profil</ion-button>
     <ion-card-title>
       {{profile.firstName}} {{profile.lastName}}
     </ion-card-title>
@@ -31,10 +31,10 @@
     <ion-grid class="grid">
       <ion-row>
         <ion-col>
-          <ion-chip color="primary" class="chip">13 activités</ion-chip>
+          <ion-chip color="primary">13 activités</ion-chip>
         </ion-col>
         <ion-col>
-          <ion-chip color="primary" class="chip"><app-rating [readOnly]="true" [average]="4"></app-rating>(7)</ion-chip>
+          <ion-chip color="primary"><app-rating [readOnly]="true" [average]="4"></app-rating>(7)</ion-chip>
         </ion-col>
       </ion-row>
     </ion-grid>
