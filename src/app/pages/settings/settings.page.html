@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModalSettings()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Parametres</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header mode="ios">Parametres du compte</ion-list-header>
+    <ion-item button detail (click)="modalChangeEmail()">Changer l'email</ion-item>
+    <ion-item button detail (click)="modalChangePassword()">Changer le mot de passe</ion-item>
+    <ion-item button detail (click)="modaleDeleteAccount()"><ion-text color="danger">Supprimer le compte</ion-text></ion-item>
+    <ion-list-header mode="ios">Parametres d'application</ion-list-header>
+    <ion-item>
+      <ion-icon slot="start" name="{{toggleDark ? 'moon' : 'moon-outline'}}"></ion-icon>
+      <ion-label>Mode nuit</ion-label>
+      <ion-toggle (ionChange)="changeDarkMode($event)" [(ngModel)]="toggleDark"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" name="{{toggleNotification ? 'notifications' : 'notifications-outline'}}"></ion-icon>
+      <ion-label>Activer les notifications</ion-label>
+      <ion-toggle [(ngModel)]="toggleNotification"></ion-toggle>
+    </ion-item>
+    <ion-list-header mode="ios">À propos de runcita</ion-list-header>
+    <ion-item>v.1.0.0-snapshot</ion-item>
+    <ion-item button detail>Conditions d'utilisations</ion-item>
+    <ion-item button detail>Politique de confidentialité</ion-item>
+    <ion-item button detail>Évaluer l'application</ion-item>
+  </ion-list>
+</ion-content>

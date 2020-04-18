@@ -84,7 +84,7 @@ export class UpdateProfilePage implements OnInit {
     if(isCover) {
       this.profileUpdated.cover = 'data:image/jpg;base64,' + image;
     }else{
-      this.profileUpdated.picture = 'data:image/jpg;base64;' + image;
+      this.profileUpdated.picture = 'data:image/jpg;base64,' + image;
     }
   }
 
