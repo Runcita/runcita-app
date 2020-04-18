@@ -18,22 +18,26 @@
   <ion-button *ngIf="!myProfil" (click)="subscriber = !subscriber" fill="{{subscriber ? 'solid' : 'outline'}}"><ion-icon slot="start" name="{{subscriber ? 'checkmark' : 'person-add'}}"></ion-icon>Suivre</ion-button>
   <ion-button *ngIf="myProfil" size="small" (click)="modaleUpdateProfile()"><ion-icon slot="start" name="create"></ion-icon>Éditer le profil</ion-button>
   <ion-card-header>
-    <ion-card-title>
-        {{profile.firstName}} {{profile.lastName}}
-      </ion-card-title>
+    <ion-card-title class="profile-name">
+      {{profile.firstName}} {{profile.lastName}}
+    </ion-card-title>
   </ion-card-header>
   <ion-card-content class="ion-no-padding">
-    <p>{{profile.description}}</p>
-    <ion-thumbnail class="running-level">
-      <img src="../../assets/runningLevel/{{profile.runningLevel.name}}.png">
-    </ion-thumbnail>
-      <p><ion-icon name="gift"></ion-icon> {{getAge(profile.birthday)}} ans</p>
-      <p><ion-icon name="{{profile.sexe ? 'woman' : 'man'}}"></ion-icon> {{profile.sexe ? 'Fille' : 'Garçon'}}</p>
-      <p><ion-icon name="location-sharp"></ion-icon> {{profile.city.name}}</p>
+    <p>
+      <ion-icon name="gift"></ion-icon> {{getAge(profile.birthday)}} ans |
+      <ion-icon name="{{profile.sexe ? 'woman' : 'man'}}"></ion-icon> {{profile.sexe ? 'Fille' : 'Garçon'}} | 
+      <ion-icon name="location-sharp"></ion-icon> {{profile.city.name}}
+    </p>
+    <p class="description-profile">{{profile.description}}</p>
     <ion-grid>
       <ion-row>
         <ion-col>
           <ion-chip color="primary">13 activités</ion-chip>
+        </ion-col>
+        <ion-col size="2">
+          <ion-thumbnail class="running-level">
+            <img src="../../assets/runningLevel/{{profile.runningLevel.name}}.png">
+          </ion-thumbnail>
         </ion-col>
         <ion-col>
           <ion-chip color="primary"><app-rating [readOnly]="true" [average]="4"></app-rating>(7)</ion-chip>
