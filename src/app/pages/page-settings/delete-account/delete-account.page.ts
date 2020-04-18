@@ -16,7 +16,7 @@ export class DeleteAccountPage implements OnInit {
     this.modalController.dismiss();
   }
 
-  public deleteAccount() {
+  public deleteAccount(): void {
     // effectuer la requete
   }
 

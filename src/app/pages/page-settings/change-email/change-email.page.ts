@@ -19,11 +19,9 @@ export class ChangeEmailPage implements OnInit {
   }
 
   public changeEmail(): void {
-    console.log(this.changeEmailRequest);
     // erreur
     this.toastService.presentToastWrongRequest('Mot de passe incorect');
-    this.changeEmailRequest.newEmail = '';
-    this.changeEmailRequest.password = '';
+    this.changeEmailRequest = new ChangeEmailRequest();
 
     // si c'est bon redirigé
     // this.presentToastWrongRequest('L\'email a bien etait changé');

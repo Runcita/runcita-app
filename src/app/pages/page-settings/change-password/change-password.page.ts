@@ -20,12 +20,9 @@ export class ChangePasswordPage implements OnInit {
   }
 
   public changePassword(): void {
-    console.log(this.changePasswordRequest);
     // erreur
     this.toastService.presentToastWrongRequest('Mot de passe incorrect');
-    this.changePasswordRequest.newPassword = '';
-    this.changePasswordRequest.oldPassword = '';
-    this.confirmPassword = '';
+    this.changePasswordRequest = new ChangePasswordRequest();
 
     // ok
     this.toastService.presentToastWrongRequest('Mot de passe modifié');

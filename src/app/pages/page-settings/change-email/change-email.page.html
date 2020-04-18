@@ -10,6 +10,16 @@
 <ion-content>
   <form (ngSubmit)="changeEmail()">
     <ion-item>
+      <ion-label position="stacked">Mail <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input maxlength="70" #oldEmail="ngModel" required type="email" [(ngModel)]="changeEmailRequest.oldEmail" name="oldEmail"></ion-input>
+    </ion-item>
+    <div class="error-container" *ngIf="oldEmail.invalid && (oldEmail.dirty || oldEmail.touched)">
+      <ion-item *ngIf="oldEmail.errors.required" lines="none">
+        <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
+        <ion-label style="font-size: small" color="danger">Le mail est requis</ion-label>
+      </ion-item>
+    </div>
+    <ion-item class="input-password">
       <ion-label position="stacked">Mot de passe <ion-text color="danger">*</ion-text></ion-label>
       <ion-input maxlength="100" #password="ngModel" required type="password" [(ngModel)]="changeEmailRequest.password" name="password"></ion-input>
     </ion-item>
@@ -33,6 +43,6 @@
         <ion-label style="font-size: small" color="danger">Format non validee</ion-label>
       </ion-item>
     </div>
-    <ion-button class="button-ok" [disabled]="!(mail.valid && password.valid)" type="submit" expand="block">Enregistrer</ion-button>
+    <ion-button class="button-ok" [disabled]="!(oldEmail.valid && mail.valid && password.valid)" type="submit" expand="block">Enregistrer</ion-button>
   </form>
 </ion-content>
