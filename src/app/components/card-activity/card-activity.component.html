@@ -1,0 +1,38 @@
+<div>
+  <ion-card-header class="card-activity-padding">
+    <ion-item lines="none">
+      <ion-avatar slot="start" class="avatar-oragniser-activity">
+        <img [src]="activity.organiser.profile.picture">
+      </ion-avatar>
+      <ion-label>
+        <h2><b>{{activity.organiser.profile.firstName}} {{activity.organiser.profile.lastName}}</b></h2>
+        <h3>{{dateToFrench(activity.date)}}</h3>
+        <p>{{activity.description}}</p>
+      </ion-label>
+      <ion-button size="small" fill="clear">Participer</ion-button>
+    </ion-item>
+  </ion-card-header>
+  <ion-card-content class="card-activity-padding card-activity-content">
+    <ion-grid class="card-details-activity ion-no-padding">
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked">
+            <ion-icon name="location"></ion-icon> {{activity.city.name}}<br>
+            <ion-icon name="people"></ion-icon> {{activity.participants.length}} {{(activity.participants.length > 1) ? 'participants' : 'participant'}}
+          </ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label position="stacked">
+            <ion-icon name="walk"></ion-icon> {{activity.runningType.name}}<br>
+            <ion-icon name="wine"></ion-icon> {{activity.after ? 'Avec' : 'Sans'}} after
+          </ion-label>
+        </ion-col>
+        <ion-col class="card-activity-action" size="2">
+          <ion-thumbnail class="avatar-runninglevel-activity">
+            <img src="../../assets/runningLevel/{{activity.runningLevel.name}}.png">
+          </ion-thumbnail>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</div>

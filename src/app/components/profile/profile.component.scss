@@ -20,6 +20,10 @@
   padding-bottom: 16px;
 }
 
+.card-activity {
+  width: 100%;
+}
+
 .details-profile {
   text-align: left;
   margin: auto;
@@ -31,8 +35,16 @@
   padding-bottom: 10px;
 }
 
+.card-content-profile {
+  padding-bottom: 0;
+}
+
 .running-level {
   width: 60px;
+}
+
+.list-item-recent-activity {
+  --padding-start: 0;
 }
 
 .avatar {
@@ -43,4 +55,3 @@
   margin-right: auto;
   margin-top: -50px;
 }
-

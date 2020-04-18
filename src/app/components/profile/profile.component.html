@@ -22,7 +22,7 @@
         {{profile.firstName}} {{profile.lastName}}
       </ion-card-title>
   </ion-card-header>
-  <ion-card-content>
+  <ion-card-content class="card-content-profile">
     <p class="desc">{{profile.description}}</p>
     <img class="running-level" src="../../assets/runningLevel/{{profile.runningLevel.name}}.png">
       <p><ion-icon name="gift"></ion-icon> {{getAge(profile.birthday)}} ans</p>
@@ -40,3 +40,15 @@
     </ion-grid>
   </ion-card-content>
 </ion-card>
+<ion-list lines="full">
+  <ion-list-header mode="ios">Activités récentes</ion-list-header>
+  <ion-item class="list-item-recent-activity">
+    <app-card-activity class="card-activity"></app-card-activity>
+  </ion-item>
+  <ion-item class="list-item-recent-activity">
+    <app-card-activity class="card-activity"></app-card-activity>
+  </ion-item>
+  <ion-item class="list-item-recent-activity">
+    <app-card-activity class="card-activity"></app-card-activity>
+  </ion-item>
+</ion-list>
