@@ -1,0 +1,26 @@
+<div>
+  <ion-card-header class="card-activity-padding">
+    <ion-item lines="none">
+      <ion-avatar slot="start" class="avatar-oragniser-activity">
+        <img [src]="activity.organiser.profile.picture">
+      </ion-avatar>
+      <ion-label>
+        <h3><b>{{activity.organiser.profile.firstName}} {{activity.organiser.profile.lastName}}</b></h3>
+        <h4>{{dateToFrench(activity.date)}}</h4>
+        <p>
+          <ion-icon name="people"></ion-icon> {{activity.participants.length}} |
+          <ion-icon name="walk"></ion-icon> {{activity.runningType.name}} | 
+          <img class="avatar-runninglevel-activity" src="../../assets/runningLevel/{{activity.runningLevel.name}}.png">{{activity.after ? ' | ' : ''}}
+          <ion-icon name="wine" *ngIf="activity.after"></ion-icon><br>
+          <ion-icon name="location"></ion-icon> {{activity.city.name}}<br>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-label class="ion-text-wrap ion-no-margin">
+      {{(activity.description.length > 100) ? activity.description.substr(0, 100) + '...' : activity.description}}
+    </ion-label>
+    <ion-button class="ion-no-margin" *ngIf="!activity.oldState" size="small" fill="clear">Participer</ion-button>
+  </ion-card-content>
+</div>

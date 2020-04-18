@@ -17,18 +17,20 @@
   </ion-grid>
   <ion-button *ngIf="!myProfil" (click)="subscriber = !subscriber" fill="{{subscriber ? 'solid' : 'outline'}}"><ion-icon slot="start" name="{{subscriber ? 'checkmark' : 'person-add'}}"></ion-icon>Suivre</ion-button>
   <ion-button *ngIf="myProfil" size="small" (click)="modaleUpdateProfile()"><ion-icon slot="start" name="create"></ion-icon>Éditer le profil</ion-button>
-  <ion-card-header class="header">
+  <ion-card-header>
     <ion-card-title>
         {{profile.firstName}} {{profile.lastName}}
       </ion-card-title>
   </ion-card-header>
-  <ion-card-content>
-    <p class="desc">{{profile.description}}</p>
-    <img class="running-level" src="../../assets/runningLevel/{{profile.runningLevel.name}}.png">
+  <ion-card-content class="ion-no-padding">
+    <p>{{profile.description}}</p>
+    <ion-thumbnail class="running-level">
+      <img src="../../assets/runningLevel/{{profile.runningLevel.name}}.png">
+    </ion-thumbnail>
       <p><ion-icon name="gift"></ion-icon> {{getAge(profile.birthday)}} ans</p>
       <p><ion-icon name="{{profile.sexe ? 'woman' : 'man'}}"></ion-icon> {{profile.sexe ? 'Fille' : 'Garçon'}}</p>
       <p><ion-icon name="location-sharp"></ion-icon> {{profile.city.name}}</p>
-    <ion-grid class="grid">
+    <ion-grid>
       <ion-row>
         <ion-col>
           <ion-chip color="primary">13 activités</ion-chip>
@@ -40,3 +42,9 @@
     </ion-grid>
   </ion-card-content>
 </ion-card>
+<ion-list lines="full">
+  <ion-list-header mode="ios">Activités récentes</ion-list-header>
+  <ion-item class="list-item-recent-activity" *ngFor="let activity of recentsActivities">
+    <app-card-activity [activity]="activity" class="card-activity"></app-card-activity>
+  </ion-item>
+</ion-list>
