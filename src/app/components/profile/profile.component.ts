@@ -6,6 +6,8 @@ import {FollowersPage} from "../../pages/followers/followers.page";
 import {Profile} from "../../models/Profile";
 import {RunningLevel} from "../../models/RunningLevel";
 import {UpdateProfilePage} from "../../pages/update-profile/update-profile.page";
+import {Activity} from "../../models/Activity";
+import {RunningType} from "../../models/RunningType";
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +22,7 @@ export class ProfileComponent implements OnInit {
     public nbSubscription: number = 46;
     public subscriber: boolean = false;
     public myProfil: boolean = true;
+    public recentsActivities: Array<Activity> = [];
 
     constructor(public modalController: ModalController) {}
 
@@ -78,6 +81,58 @@ export class ProfileComponent implements OnInit {
         birthday: 924035243699,
         city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
     });
+    this.recentsActivities = [
+        Object.assign(new Activity(), {
+            id: 1,
+            date: 2341414531344,
+            oldState: true,
+            description: 'Petit footing au soir pour se détendre',
+            after: true,
+            city: Object.assign(new City(), {name: 'Lille'}),
+            runningType: Object.assign(new RunningType(), {id: 1, name: 'Fractionné'}),
+            runningLevel: Object.assign(new RunningLevel(), {name: 'lapin'}),
+            organiser: Object.assign(new User(), {
+                id: 1,
+                profile: Object.assign(new Profile(), {
+                    lastName: 'Landschoot',
+                    firstName: 'Tony',
+                    description: '20yo, Lille, 2* semi et actuellement en prepa marathon',
+                    picture: '../../assets/mock/profile.jpg',
+                    cover: '../../assets/mock/lille.jpg',
+                    sexe: false,
+                    runningLevel: Object.assign(new RunningLevel(), {name: 'gazelle'}),
+                    birthday: 924035243699,
+                    city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
+                })
+            }),
+            participants: []
+        }),
+        Object.assign(new Activity(), {
+            id: 1,
+            date: 2341414531344,
+            oldState: true,
+            description: 'Séance fractionnée du matin',
+            after: false,
+            city: Object.assign(new City(), {name: 'Lille'}),
+            runningType: Object.assign(new RunningType(), {id: 1, name: 'Fractionné'}),
+            runningLevel: Object.assign(new RunningLevel(), {name: 'panthere'}),
+            organiser: Object.assign(new User(), {
+                id: 1,
+                profile: Object.assign(new Profile(), {
+                    lastName: 'Landschoot',
+                    firstName: 'Ludovic',
+                    description: '20yo, Lille, 2* semi et actuellement en prepa marathon',
+                    picture: '../../assets/mock/lille.jpg',
+                    cover: '../../assets/mock/lille.jpg',
+                    sexe: false,
+                    runningLevel: Object.assign(new RunningLevel(), {name: 'gazelle'}),
+                    birthday: 924035243699,
+                    city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
+                })
+            }),
+            participants: []
+        }),
+    ];
     // appel api pour récuperer le user via this.id
     // vérifier si le profil de l'auth {Auth.id = user.id}
     // récuperer nombre abonnement

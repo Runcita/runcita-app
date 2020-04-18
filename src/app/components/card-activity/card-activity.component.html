@@ -5,34 +5,22 @@
         <img [src]="activity.organiser.profile.picture">
       </ion-avatar>
       <ion-label>
-        <h2><b>{{activity.organiser.profile.firstName}} {{activity.organiser.profile.lastName}}</b></h2>
-        <h3>{{dateToFrench(activity.date)}}</h3>
-        <p>{{activity.description}}</p>
+        <h3><b>{{activity.organiser.profile.firstName}} {{activity.organiser.profile.lastName}}</b></h3>
+        <h4>{{dateToFrench(activity.date)}}</h4>
+        <p>
+          <ion-icon name="people"></ion-icon> {{activity.participants.length}} |
+          <ion-icon name="walk"></ion-icon> {{activity.runningType.name}} | 
+          <img class="avatar-runninglevel-activity" src="../../assets/runningLevel/{{activity.runningLevel.name}}.png">{{activity.after ? ' | ' : ''}}
+          <ion-icon name="wine" *ngIf="activity.after"></ion-icon><br>
+          <ion-icon name="location"></ion-icon> {{activity.city.name}}<br>
+        </p>
       </ion-label>
-      <ion-button size="small" fill="clear">Participer</ion-button>
     </ion-item>
   </ion-card-header>
-  <ion-card-content class="card-activity-padding card-activity-content">
-    <ion-grid class="card-details-activity ion-no-padding">
-      <ion-row>
-        <ion-col>
-          <ion-label position="stacked">
-            <ion-icon name="location"></ion-icon> {{activity.city.name}}<br>
-            <ion-icon name="people"></ion-icon> {{activity.participants.length}} {{(activity.participants.length > 1) ? 'participants' : 'participant'}}
-          </ion-label>
-        </ion-col>
-        <ion-col>
-          <ion-label position="stacked">
-            <ion-icon name="walk"></ion-icon> {{activity.runningType.name}}<br>
-            <ion-icon name="wine"></ion-icon> {{activity.after ? 'Avec' : 'Sans'}} after
-          </ion-label>
-        </ion-col>
-        <ion-col class="card-activity-action" size="2">
-          <ion-thumbnail class="avatar-runninglevel-activity">
-            <img src="../../assets/runningLevel/{{activity.runningLevel.name}}.png">
-          </ion-thumbnail>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-card-content>
+    <ion-label class="ion-text-wrap ion-no-margin">
+      {{(activity.description.length > 100) ? activity.description.substr(0, 100) + '...' : activity.description}}
+    </ion-label>
+    <ion-button class="ion-no-margin" *ngIf="!activity.oldState" size="small" fill="clear">Participer</ion-button>
   </ion-card-content>
 </div>
