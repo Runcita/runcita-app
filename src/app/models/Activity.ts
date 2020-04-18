@@ -6,6 +6,7 @@ import {User} from "./User";
 export class Activity {
     id: number;
     date: number;
+    oldState: boolean;
     description: string;
     after: boolean;
     city: City;

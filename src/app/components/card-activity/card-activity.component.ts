@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Activity} from "../../models/Activity";
 import {City} from "../../models/City";
 import {RunningType} from "../../models/RunningType";
@@ -13,7 +13,7 @@ import {Profile} from "../../models/Profile";
 })
 export class CardActivityComponent implements OnInit {
 
-  public activity: Activity;
+  @Input() public activity: Activity;
 
   constructor() { }
 
@@ -24,30 +24,6 @@ export class CardActivityComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activity = Object.assign(new Activity(), {
-      id: 1,
-      date: 2341414531344,
-      description: 'Petit footing au soir pour se détendre',
-      after: true,
-      city: Object.assign(new City(), {name: 'Lille'}),
-      runningType: Object.assign(new RunningType(), {id: 1, name: 'Fractionné'}),
-      runningLevel: Object.assign(new RunningLevel(), {name: 'lapin'}),
-      organiser: Object.assign(new User(), {
-        id: 1,
-        profile : Object.assign(new Profile(), {
-          lastName: 'Landschoot',
-          firstName: 'Tony',
-          description: '20yo, Lille, 2* semi et actuellement en prepa marathon',
-          picture: '../../assets/mock/profile.jpg',
-          cover: '../../assets/mock/lille.jpg',
-          sexe: false,
-          runningLevel: Object.assign(new RunningLevel(), {name: 'gazelle'}),
-          birthday: 924035243699,
-          city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
-        })
-      }),
-      participants: []
-    });
   }
 
 }
