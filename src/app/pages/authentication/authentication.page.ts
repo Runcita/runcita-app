@@ -20,26 +20,26 @@ export class AuthenticationPage implements OnInit {
       city: new City()
     })
   });
-  public nameFormControl = new FormControl('', [
+  public nameFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
     Validators.minLength(2)
   ]);
-  public firstNameFormControl = new FormControl('', [
+  public firstNameFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
     Validators.minLength(2)
   ]);
-  public emailFormControl = new FormControl('', [
+  public emailFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.pattern('^\\w+([\\.-]?\w+)*@\\w+([\.-]?\\w+)*(\\.\\w{2,3})+$'),
     Validators.minLength(2)
   ]);
-  public passwordFormControl = new FormControl('', [
+  public passwordFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(8)
   ]);
-  public confirmPasswordFormControl = new FormControl('', [
+  public confirmPasswordFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.pattern(this.user.password),
   ]);
