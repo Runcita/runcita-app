@@ -28,7 +28,6 @@ export class AuthenticationService {
     }
 
     public checkSignin(): void {
-        console.log('check signin');
         this.storage.get('jwtToken').then(jwt => {
             console.log('jwtToken', jwt);
             if (jwt) {

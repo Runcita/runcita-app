@@ -10,7 +10,6 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (this.authenticationService.tokenValue) {
-            console.log('jwt interceptor', this.authenticationService.tokenValue);
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${this.authenticationService.tokenValue}`

@@ -12,7 +12,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {OtherProfilePageModule} from './pages/other-profile/other-profile.module';
 import {MyProfilePageModule} from './pages/my-profile/my-profile.module';
 import {Camera} from '@ionic-native/camera/ngx';
-// import {ErrorInterceptor} from './_helpers/error.interceptor';
+import {ErrorInterceptor} from './_helpers/error.interceptor';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
 import {IonicStorageModule} from '@ionic/storage';
 
@@ -32,7 +32,7 @@ import {IonicStorageModule} from '@ionic/storage';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     StatusBar,
     SplashScreen,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
