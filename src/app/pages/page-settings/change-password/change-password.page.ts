@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController} from "@ionic/angular";
-import {ChangePasswordRequest} from "../../../models/ChangePasswordRequest";
+import {ChangePasswordRequest} from "../../../_models/ChangePasswordRequest";
 import {ToastService} from "../../../services/toast.service";
 
 @Component({

@@ -6,8 +6,8 @@ import {FollowersPage} from "../../pages/followers/followers.page";
 import {Profile} from "../../_models/Profile";
 import {RunningLevel} from "../../_models/RunningLevel";
 import {UpdateProfilePage} from "../../pages/update-profile/update-profile.page";
-import {Activity} from "../../models/Activity";
-import {RunningType} from "../../models/RunningType";
+import {Activity} from "../../_models/Activity";
+import {RunningType} from "../../_models/RunningType";
 
 @Component({
   selector: 'app-profile',
