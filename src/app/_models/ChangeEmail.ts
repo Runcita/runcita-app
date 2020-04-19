@@ -1,4 +1,4 @@
-export class ChangeEmailRequest {
+export class ChangeEmail {
     password: string;
     oldEmail: string;
     newEmail: string;

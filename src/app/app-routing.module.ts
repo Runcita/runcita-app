@@ -5,26 +5,23 @@ import {AuthGuard} from './_helpers/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./pages/initialization/initialization.module').then(m => m.InitializationPageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./pages/initialization/initialization.module').then(m => m.InitializationPageModule)
   },
   {
     path: 'introduction',
     loadChildren: () => import('./pages/introduction/introduction.module').then(m => m.IntroductionPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'authentication',
-    loadChildren: () => import('./pages/authentication/authentication.module').then( m => m.AuthenticationPageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./pages/authentication/authentication.module').then( m => m.AuthenticationPageModule)
   },
   {
     path: 'signin',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthGuard]
   }
 ];

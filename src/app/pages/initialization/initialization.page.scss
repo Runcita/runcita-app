@@ -1,0 +1,27 @@
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 150px;
+  height: 150px;
+  border: 18px solid #fff;
+  border-radius: 50%;
+  border-top: 18px solid #2fcc70;
+  border-bottom: 18px solid #3498db;
+  animation: move 2s linear infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+
+}

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {ModalController, ToastController} from "@ionic/angular";
-import {ChangeEmailRequest} from "../../../_models/ChangeEmailRequest";
-import {ToastService} from "../../../services/toast.service";
-import {FormControl, Validators} from "@angular/forms";
-import {ErrorMatcherService} from "../../../services/error-matcher.service";
+import {Component, OnInit} from '@angular/core';
+import {ModalController} from '@ionic/angular';
+import {ChangeEmail} from '../../../_models/ChangeEmail';
+import {FormControl, Validators} from '@angular/forms';
+import {ErrorMatcherService} from '../../../_services/error-matcher.service';
+import {ToastService} from '../../../_services/toast.service';
 
 @Component({
   selector: 'app-change-email',
@@ -12,7 +12,7 @@ import {ErrorMatcherService} from "../../../services/error-matcher.service";
 })
 export class ChangeEmailPage implements OnInit {
 
-  public changeEmailRequest: ChangeEmailRequest = new ChangeEmailRequest();
+  public changeEmailRequest: ChangeEmail = new ChangeEmail();
 
   public emailFormControl: FormControl = new FormControl('', [
     Validators.required,
@@ -35,7 +35,7 @@ export class ChangeEmailPage implements OnInit {
   public changeEmail(): void {
     // erreur
     this.toastService.presentToastWrongRequest('Mot de passe incorect');
-    this.changeEmailRequest = new ChangeEmailRequest();
+    this.changeEmailRequest = new ChangeEmail();
 
     // si c'est bon redirigé
     // this.presentToastWrongRequest('L\'email a bien etait changé');

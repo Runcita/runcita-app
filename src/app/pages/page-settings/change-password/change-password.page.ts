@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {ModalController} from "@ionic/angular";
-import {ChangePasswordRequest} from "../../../_models/ChangePasswordRequest";
-import {ToastService} from "../../../services/toast.service";
-import {FormControl, Validators} from "@angular/forms";
-import {ErrorMatcherService} from "../../../services/error-matcher.service";
+import {Component, OnInit} from '@angular/core';
+import {ModalController} from '@ionic/angular';
+import {ChangePassword} from '../../../_models/ChangePassword';
+import {ToastService} from '../../../_services/toast.service';
+import {FormControl, Validators} from '@angular/forms';
+import {ErrorMatcherService} from '../../../_services/error-matcher.service';
 
 @Component({
   selector: 'app-change-password',
@@ -12,7 +12,7 @@ import {ErrorMatcherService} from "../../../services/error-matcher.service";
 })
 export class ChangePasswordPage implements OnInit {
 
-  public changePasswordRequest: ChangePasswordRequest = new ChangePasswordRequest();
+  public changePasswordRequest: ChangePassword = new ChangePassword();
   public confirmPassword: string;
 
   public emailFormControl: FormControl = new FormControl('', [
@@ -47,7 +47,7 @@ export class ChangePasswordPage implements OnInit {
   public changePassword(): void {
     // erreur
     this.toastService.presentToastWrongRequest('Mot de passe incorrect');
-    this.changePasswordRequest = new ChangePasswordRequest();
+    this.changePasswordRequest = new ChangePassword();
 
     // ok
     this.toastService.presentToastWrongRequest('Mot de passe modifié');
