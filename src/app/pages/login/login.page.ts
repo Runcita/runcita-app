@@ -3,6 +3,8 @@ import {User} from '../../_models/User';
 import {AuthenticationService} from '../../_services/authentification.service';
 import {Router} from '@angular/router';
 import {LoadingController, ToastController} from '@ionic/angular';
+import {FormControl, Validators} from "@angular/forms";
+import {ErrorMatcherService} from "../../services/error-matcher.service";
 
 @Component({
   selector: 'app-login',
@@ -13,6 +15,14 @@ export class LoginPage implements OnInit {
 
   public user: User = new User();
   public loadingSignin: boolean;
+
+  public emailFormControl: FormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  public passwordFormControl: FormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  public matcher: ErrorMatcherService = new ErrorMatcherService();
 
   constructor(private router: Router, private authenticationService: AuthenticationService, private toastController: ToastController, private loadingController: LoadingController) {
     // redirect to home if already logged in

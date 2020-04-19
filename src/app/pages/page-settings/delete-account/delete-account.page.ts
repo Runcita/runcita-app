@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController} from "@ionic/angular";
+import {FormControl, Validators} from "@angular/forms";
+import {ErrorMatcherService} from "../../../services/error-matcher.service";
 
 @Component({
   selector: 'app-delete-account',
@@ -9,6 +11,12 @@ import {ModalController} from "@ionic/angular";
 export class DeleteAccountPage implements OnInit {
 
   public confirmDelete: string;
+
+  public confirmFormControl: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('SUPPRIMER'),
+  ]);
+  public matcher: ErrorMatcherService = new ErrorMatcherService();
 
   constructor(private modalController: ModalController) { }
 
