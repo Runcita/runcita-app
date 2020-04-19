@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {City} from "../../models/City";
 import {ModalController} from "@ionic/angular";
 import {ChangeEmailPage} from "../page-settings/change-email/change-email.page";
 import {ChangePasswordPage} from "../page-settings/change-password/change-password.page";

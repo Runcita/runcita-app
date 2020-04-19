@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController, ToastController} from "@ionic/angular";
-import {ChangeEmailRequest} from "../../../models/ChangeEmailRequest";
+import {ChangeEmailRequest} from "../../../_models/ChangeEmailRequest";
 import {ToastService} from "../../../services/toast.service";
 
 @Component({

@@ -1,10 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Activity} from "../../models/Activity";
-import {City} from "../../models/City";
-import {RunningType} from "../../models/RunningType";
-import {RunningLevel} from "../../models/RunningLevel";
-import {User} from "../../models/User";
-import {Profile} from "../../models/Profile";
+import {Activity} from "../../_models/Activity";
 
 @Component({
   selector: 'app-card-activity',
