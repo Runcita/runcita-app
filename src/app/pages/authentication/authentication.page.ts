@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../models/User';
+import {User} from '../../_models/User';
 import {ModalController} from '@ionic/angular';
 import {SearchCityPage} from '../search-city/search-city.page';
-import {Profile} from "../../models/Profile";
-import {City} from "../../models/City";
+import {Profile} from "../../_models/Profile";
+import {City} from "../../_models/City";
 
 @Component({
   selector: 'app-authentication',

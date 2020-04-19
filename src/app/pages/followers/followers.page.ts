@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {City} from "../../models/City";
+import {City} from "../../_models/City";
 import {ModalController} from "@ionic/angular";
-import {User} from "../../models/User";
+import {User} from "../../_models/User";
 import {OtherProfilePage} from "../other-profile/other-profile.page";
-import {Profile} from "../../models/Profile";
+import {Profile} from "../../_models/Profile";
 
 @Component({
   selector: 'app-follow',

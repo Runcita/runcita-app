@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../../models/User';
-import {City} from "../../models/City";
+import {User} from '../../_models/User';
+import {City} from "../../_models/City";
 import {ModalController} from "@ionic/angular";
 import {FollowersPage} from "../../pages/followers/followers.page";
-import {Profile} from "../../models/Profile";
-import {RunningLevel} from "../../models/RunningLevel";
+import {Profile} from "../../_models/Profile";
+import {RunningLevel} from "../../_models/RunningLevel";
 import {UpdateProfilePage} from "../../pages/update-profile/update-profile.page";
 import {Activity} from "../../models/Activity";
 import {RunningType} from "../../models/RunningType";
