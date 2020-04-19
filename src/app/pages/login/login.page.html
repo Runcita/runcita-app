@@ -1,31 +1,27 @@
 <ion-content fullscreen="true">
   <ion-img src="../assets/icon/favicon.png"></ion-img>
   <h2>Connectez vous!</h2>
-  <form (ngSubmit)="signin()">
-    <ion-item>
-      <ion-label position="stacked">Mail <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input maxlength="70" mode="ios" #mail="ngModel" required type="email" [(ngModel)]="user.email" name="mail"></ion-input>
-    </ion-item>
-    <div class="error-container" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
-      <ion-item *ngIf="mail.errors.required" lines="none">
-        <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-        <ion-label style="font-size: small" color="danger">Le mail est requis</ion-label>
-      </ion-item>
-    </div>
-    <ion-item>
-      <ion-label position="stacked">Mot de passe <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input maxlength="50" mode="ios" #password="ngModel" required type="password" [(ngModel)]="user.password" name="password"></ion-input>
-    </ion-item>
-    <div class="error-container" *ngIf="password.invalid && (password.dirty || password.touched)">
-      <ion-item *ngIf="password.errors.required" lines="none">
-        <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-        <ion-label style="font-size: small" color="danger">Le mot de passe est requis</ion-label>
-      </ion-item>
-    </div>
-    <ion-button class="button-ok" [disabled]="!(mail.valid && password.valid) && loadingSignin" type="submit" expand="block">Se connecter
-      <ion-icon slot="end" name="log-in-outline" *ngIf="!loadingSignin"></ion-icon>
-      <ion-spinner *ngIf="loadingSignin" name="lines-small"></ion-spinner>
-    </ion-button>
+  <form (ngSubmit)="signin()" class="form-authentication">
+    <mat-form-field class="input-full-width">
+      <mat-label>Email <ion-text color="danger">*</ion-text></mat-label>
+      <input matInput maxlength="70" #email [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.email">
+      <mat-hint align="end">{{email.value.length}} / 70</mat-hint>
+      <mat-error *ngIf="emailFormControl.hasError('pattern') && !emailFormControl.hasError('required')">
+        Format non valide
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        L'email est requise
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-full-width">
+      <mat-label>Mot de passe <ion-text color="danger">*</ion-text></mat-label>
+      <input matInput maxlength="100" type="password" #password [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.password">
+      <mat-hint align="end">{{password.value.length}} / 100</mat-hint>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Le mot de passe est requis
+      </mat-error>
+    </mat-form-field>
+    <ion-button class="button-ok" [disabled]="!(emailFormControl.valid && passwordFormControl.valid)" type="submit" expand="block" [routerLink]="['/main']">Se connecter<ion-icon slot="end" name="log-in-outline"></ion-icon></ion-button>
   </form>
   <ion-button fill="clear" color="secondary" size="small" [routerLink]="['/authentication']">Je n'ai pas encore de compte</ion-button>
 </ion-content>

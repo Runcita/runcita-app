@@ -1,7 +1,7 @@
 <ion-content fullscreen="true">
   <ion-img id="logo-authentication" src="../assets/icon/favicon.png"></ion-img>
   <h2>Inscrivez vous!</h2>
-  <form (submit)="signup()" class="form-authentication">
+  <form (ngSubmit)="signup()" class="form-authentication">
     <mat-form-field class="input-full-width">
       <mat-label>Nom <ion-text color="danger">*</ion-text></mat-label>
       <input matInput maxlength="20" #name [formControl]="nameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.profile.lastName">

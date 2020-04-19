@@ -33,7 +33,6 @@ export class AuthenticationPage implements OnInit {
   public emailFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.pattern('^\\w+([\\.-]?\w+)*@\\w+([\.-]?\\w+)*(\\.\\w{2,3})+$'),
-    Validators.minLength(2)
   ]);
   public passwordFormControl: FormControl = new FormControl('', [
     Validators.required,
@@ -59,7 +58,7 @@ export class AuthenticationPage implements OnInit {
     header: 'Selectionnez votre sexe',
   };
 
-  constructor(public modalController: ModalController, private _adapter: DateAdapter<any>) { }
+  constructor(public modalController: ModalController, private adapter: DateAdapter<any>) { }
 
   public updateConfirmPasswordFormControl(): void {
     this.confirmPasswordFormControl = new FormControl('', [
@@ -87,6 +86,6 @@ export class AuthenticationPage implements OnInit {
   }
 
   ngOnInit() {
-    this._adapter.setLocale('fr');
+    this.adapter.setLocale('fr');
   }
 }

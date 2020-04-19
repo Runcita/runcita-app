@@ -1,4 +1,11 @@
-app-signup {
+.form-authentication {
+  margin: auto;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.input-full-width {
   width: 90%;
 }
 
@@ -8,16 +15,4 @@ ion-img {
 
 ion-content {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.button-ok {
-  margin-top: 10px;
-}
-
-.item-has-focus ion-label {
-  color: #1a1a1a;
 }
