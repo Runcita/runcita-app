@@ -44,11 +44,11 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <ion-list lines="full">
+      <ion-list-header mode="ios">Activités récentes</ion-list-header>
+      <ion-item class="list-item-recent-activity" *ngFor="let activity of recentsActivities">
+        <app-card-activity [activity]="activity" class="card-activity"></app-card-activity>
+      </ion-item>
+    </ion-list>
   </ion-card-content>
 </ion-card>
-<ion-list lines="full">
-  <ion-list-header mode="ios">Activités récentes</ion-list-header>
-  <ion-item class="list-item-recent-activity" *ngFor="let activity of recentsActivities">
-    <app-card-activity [activity]="activity" class="card-activity"></app-card-activity>
-  </ion-item>
-</ion-list>

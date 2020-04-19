@@ -1,7 +1,7 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>Mon profil</ion-title>
-    <ion-buttons slot="end" collapse="true">
+    <ion-buttons slot="end">
       <ion-button (click)="modalSettings()">
         <ion-icon color="dark" name="settings-sharp"></ion-icon>
       </ion-button>
@@ -12,20 +12,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Mon profile</ion-title>
-      <ion-buttons slot="end" collapse="true">
-        <ion-button (click)="modalSettings()">
-          <ion-icon color="dark" name="settings-sharp"></ion-icon>
-        </ion-button>
-        <ion-button>
-          <ion-icon color="dark" name="notifications"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content>
   <app-profile [idUser]="1"></app-profile>
 </ion-content>
