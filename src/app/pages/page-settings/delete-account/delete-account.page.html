@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="content-delete-account">
   <ion-card color="danger">
     <ion-card-header>
       <ion-card-title>Attention</ion-card-title>
@@ -16,11 +16,17 @@
       <p>Cette action est irréversible. Pour confirmer veuillez écrire SUPPRIMER ci-dessous</p>
     </ion-card-content>
   </ion-card>
-  <form (ngSubmit)="deleteAccount()">
-    <ion-item>
-      <ion-label position="stacked">Confirmation <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input required #confirm="ngModel" [(ngModel)]="confirmDelete" pattern="SUPPRIMER" type="text" name="confirm"></ion-input>
-    </ion-item>
-    <ion-button class="button-ok" [disabled]="!(confirm.valid)" type="submit" expand="block" color="danger">Valider</ion-button>
+  <form (ngSubmit)="deleteAccount()" class="form-authentication">
+    <mat-form-field class="input-full-width">
+      <mat-label>Confirmation <ion-text color="danger">*</ion-text></mat-label>
+      <input matInput [formControl]="confirmFormControl" [errorStateMatcher]="matcher" [(ngModel)]="confirmDelete">
+      <mat-error *ngIf="confirmFormControl.hasError('required')">
+      La confirmation est requise
+    </mat-error>
+      <mat-error *ngIf="confirmFormControl.hasError('pattern')">
+        Veuillez entrer <strong>SUPPRIMER</strong>
+      </mat-error>
+    </mat-form-field>
+    <ion-button class="button-ok" [disabled]="!(confirmFormControl.valid)" type="submit" expand="block" color="danger">Valider</ion-button>
   </form>
 </ion-content>

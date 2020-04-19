@@ -1,14 +1,11 @@
 <ion-content fullscreen="true">
   <ion-img src="../assets/icon/favicon.png"></ion-img>
   <h2>Connectez vous!</h2>
-  <form (ngSubmit)="signin()" class="form-authentication">
+  <form #form (ngSubmit)="signin()" class="form-authentication">
     <mat-form-field class="input-full-width">
       <mat-label>Email <ion-text color="danger">*</ion-text></mat-label>
       <input matInput maxlength="70" #email [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.email">
       <mat-hint align="end">{{email.value.length}} / 70</mat-hint>
-      <mat-error *ngIf="emailFormControl.hasError('pattern') && !emailFormControl.hasError('required')">
-        Format non valide
-      </mat-error>
       <mat-error *ngIf="emailFormControl.hasError('required')">
         L'email est requise
       </mat-error>
@@ -21,7 +18,7 @@
         Le mot de passe est requis
       </mat-error>
     </mat-form-field>
-    <ion-button class="button-ok" [disabled]="!(emailFormControl.valid && passwordFormControl.valid) && loadingSignin" type="submit" expand="block" [routerLink]="['/main']">
+    <ion-button class="button-ok" [disabled]="!(emailFormControl.valid && passwordFormControl.valid) || loadingSignin" type="submit" expand="block">
       Se connecter
       <ion-icon slot="end" name="log-in-outline" *ngIf="!loadingSignin"></ion-icon>
       <ion-spinner *ngIf="loadingSignin" name="lines-small"></ion-spinner>
