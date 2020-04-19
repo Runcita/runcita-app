@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../_models/User';
 import {ModalController} from '@ionic/angular';
 import {SearchCityPage} from '../search-city/search-city.page';
 import {Profile} from "../../_models/Profile";
 import {City} from "../../_models/City";
+import {FormControl, Validators} from "@angular/forms";
+import {ErrorMatcherService} from "../../services/error-matcher.service";
+import {DateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-authentication',
@@ -17,17 +20,56 @@ export class AuthenticationPage implements OnInit {
       city: new City()
     })
   });
+  public nameFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
+    Validators.minLength(2)
+  ]);
+  public firstNameFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
+    Validators.minLength(2)
+  ]);
+  public emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('^\\w+([\\.-]?\w+)*@\\w+([\.-]?\\w+)*(\\.\\w{2,3})+$'),
+    Validators.minLength(2)
+  ]);
+  public passwordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(8)
+  ]);
+  public confirmPasswordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.user.password),
+  ]);
+  public cityFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  public sexeFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  public birthdayFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  public matcher: ErrorMatcherService = new ErrorMatcherService();
   public confirmPassword: string = '';
-  public choiceBirthday: string;
+  public choiceBirthday: Date;
   public customActionSheetOptions: object = {
     header: 'Selectionnez votre sexe',
   };
 
-  constructor(public modalController: ModalController) { }
+  constructor(public modalController: ModalController, private _adapter: DateAdapter<any>) { }
+
+  public updateConfirmPasswordFormControl(): void {
+    this.confirmPasswordFormControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.user.password),
+    ]);
+  }
 
   public signup(): void {
-    let date = new Date(this.choiceBirthday);
-    this.user.profile.birthday = date.getTime();
+    this.user.profile.birthday = this.choiceBirthday.getTime();
     console.log(this.user);
   }
 
@@ -45,5 +87,6 @@ export class AuthenticationPage implements OnInit {
   }
 
   ngOnInit() {
+    this._adapter.setLocale('fr');
   }
 }
