@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {City} from "../../models/City";
+import {City} from "../../_models/City";
 import {ModalController} from "@ionic/angular";
-import {RunningLevel} from "../../models/RunningLevel";
+import {RunningLevel} from "../../_models/RunningLevel";
 
 @Component({
   selector: 'app-running-level',

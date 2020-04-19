@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {City} from "../../models/City";
+import {City} from "../../_models/City";
 import {AlertController, ModalController} from "@ionic/angular";
-import {Profile} from "../../models/Profile";
+import {Profile} from "../../_models/Profile";
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {SearchCityPage} from "../search-city/search-city.page";
 import {RunningLevelPage} from "../running-level/running-level.page";

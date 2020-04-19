@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController} from '@ionic/angular';
-import {CitiesService} from '../../services/cities.service';
-import {City} from "../../models/City";
+import {CityService} from '../../_services/city.service';
+import {City} from "../../_models/City";
 
 @Component({
   selector: 'app-search-city',
@@ -13,7 +13,7 @@ export class SearchCityPage implements OnInit {
   public cities: Array<City> = [];
   public search: string;
 
-  constructor(public modalCtrl: ModalController, private apiCities: CitiesService) { }
+  constructor(public modalCtrl: ModalController, private apiCities: CityService) { }
 
   public dismissModalSearchCity(city: City): void {
     // using the injected ModalController this page

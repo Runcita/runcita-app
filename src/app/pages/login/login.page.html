@@ -4,7 +4,7 @@
   <form (ngSubmit)="signin()">
     <ion-item>
       <ion-label position="stacked">Mail <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input maxlength="70" mode="ios" #mail="ngModel" required type="email" [(ngModel)]="user.mail" name="mail"></ion-input>
+      <ion-input maxlength="70" mode="ios" #mail="ngModel" required type="email" [(ngModel)]="user.email" name="mail"></ion-input>
     </ion-item>
     <div class="error-container" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
       <ion-item *ngIf="mail.errors.required" lines="none">
@@ -22,7 +22,10 @@
         <ion-label style="font-size: small" color="danger">Le mot de passe est requis</ion-label>
       </ion-item>
     </div>
-    <ion-button class="button-ok" [disabled]="!(mail.valid && password.valid)" type="submit" expand="block" [routerLink]="['/main']">Se connecter<ion-icon slot="end" name="log-in-outline"></ion-icon></ion-button>
+    <ion-button class="button-ok" [disabled]="!(mail.valid && password.valid) && loadingSignin" type="submit" expand="block">Se connecter
+      <ion-icon slot="end" name="log-in-outline" *ngIf="!loadingSignin"></ion-icon>
+      <ion-spinner *ngIf="loadingSignin" name="lines-small"></ion-spinner>
+    </ion-button>
   </form>
   <ion-button fill="clear" color="secondary" size="small" [routerLink]="['/authentication']">Je n'ai pas encore de compte</ion-button>
 </ion-content>
