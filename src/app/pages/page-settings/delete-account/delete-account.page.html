@@ -16,7 +16,7 @@
       <p>Cette action est irréversible. Pour confirmer veuillez écrire SUPPRIMER ci-dessous</p>
     </ion-card-content>
   </ion-card>
-  <form (ngSubmit)="deleteAccount()" class="form-authentication">
+  <form (ngSubmit)="deleteAccount()" class="form-delete-account">
     <mat-form-field class="input-full-width">
       <mat-label>Confirmation <ion-text color="danger">*</ion-text></mat-label>
       <input matInput [formControl]="confirmFormControl" [errorStateMatcher]="matcher" [(ngModel)]="confirmDelete">
