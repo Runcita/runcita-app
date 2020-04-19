@@ -13,7 +13,6 @@ export class AuthenticationService {
     private token: string;
 
     constructor(private http: HttpClient, private storage: Storage, private router: Router) {
-        this.token = JSON.parse(localStorage.getItem('jwtToken'));
     }
 
     public get currentUserValue(): User {
@@ -30,13 +29,13 @@ export class AuthenticationService {
 
     public checkSignin(): void {
         console.log('check signin');
-        this.storage.get('jwt').then(jwt => {
-            console.log('jwt', jwt);
-            if (jwt) { // check if jwt is expired
-                this.http.get(`${environment.apiUrl}/authenticate`).subscribe(
+        this.storage.get('jwtToken').then(jwt => {
+            console.log('jwtToken', jwt);
+            if (jwt) {
+                this.token = jwt;
+                this.http.get(`${environment.apiUrl}/auth/authenticate`).subscribe(
                     () => {
                         this.loadCurrentUser().subscribe(() => {
-                            this.token = jwt;
                             this.router.navigate(['/home']);
                         });
                     },
