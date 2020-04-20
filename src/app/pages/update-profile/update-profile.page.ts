@@ -100,7 +100,6 @@ export class UpdateProfilePage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    console.log(data);
     this.userUpdated.runningLevel = Object.assign(new RunningLevel(), {
         name: data.runningLevel.name
     });
