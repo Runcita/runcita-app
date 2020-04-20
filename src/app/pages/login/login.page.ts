@@ -3,8 +3,8 @@ import {User} from '../../_models/User';
 import {AuthenticationService} from '../../_services/authentification.service';
 import {Router} from '@angular/router';
 import {LoadingController, ToastController} from '@ionic/angular';
-import {FormControl, Validators} from "@angular/forms";
-import {ErrorMatcherService} from "../../services/error-matcher.service";
+import {FormControl, Validators} from '@angular/forms';
+import {ErrorMatcherService} from '../../_services/error-matcher.service';
 
 @Component({
   selector: 'app-login',
