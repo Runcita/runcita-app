@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {ModalController} from "@ionic/angular";
-import {FormControl, Validators} from "@angular/forms";
-import {ErrorMatcherService} from "../../../services/error-matcher.service";
+import {Component, OnInit} from '@angular/core';
+import {ModalController} from '@ionic/angular';
+import {FormControl, Validators} from '@angular/forms';
+import {ErrorMatcherService} from '../../../_services/error-matcher.service';
 
 @Component({
   selector: 'app-delete-account',

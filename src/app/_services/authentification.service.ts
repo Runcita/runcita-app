@@ -12,6 +12,8 @@ export class AuthenticationService {
     private currentUser: User;
     private token: string;
 
+    public jwtTokenKeyStorage: string = 'jwtToken';
+
     constructor(private http: HttpClient, private storage: Storage, private router: Router) {
     }
 
@@ -23,32 +25,40 @@ export class AuthenticationService {
         return this.token;
     }
 
+    public getJwtStorage(): Observable<any> {
+        return new Observable(observer => {
+            this.storage.get(this.jwtTokenKeyStorage).then(jwt => {
+                if (jwt) {
+                    this.token = jwt;
+                    this.authenticate().subscribe(
+                        () => {
+                            observer.next();
+                            observer.complete();
+                        },
+                        () => {
+                            observer.error();
+                            observer.complete();
+                        });
+                } else {
+                    observer.error();
+                    observer.complete();
+                }
+            });
+        });
+    }
+
     public isAuthentificated(): boolean {
         return this.token !== undefined && this.currentUser !== undefined;
     }
 
-    public checkSignin(): void {
-        this.storage.get('jwtToken').then(jwt => {
-            console.log('jwtToken', jwt);
-            if (jwt) {
-                this.token = jwt;
-                this.http.get(`${environment.apiUrl}/auth/authenticate`).subscribe(
-                    () => {
-                        this.loadCurrentUser().subscribe(() => {
-                            this.router.navigate(['/home']);
-                        });
-                    },
-                    () => this.logout());
-            } else {
-                this.logout();
-            }
-        });
+    public authenticate(): Observable<any> {
+        return this.http.get(`${environment.apiUrl}/auth/authenticate`);
     }
 
     public signin(email: string, password: string): Observable<string> {
         return this.http.post(`${environment.apiUrl}/auth/signin`, { email, password }, {responseType: 'text'})
             .pipe(map(token => {
-                this.storage.set('jwtToken', token);
+                this.storage.set(this.jwtTokenKeyStorage, token);
                 this.token = token;
                 return token;
             }));
@@ -63,8 +73,9 @@ export class AuthenticationService {
     }
 
     public logout(): void {
-        this.storage.remove('jwtToken').then(() =>
-            this.currentUser = undefined
-        );
+        this.storage.remove(this.jwtTokenKeyStorage).then(() => {
+            this.currentUser = undefined;
+            this.router.navigate(['/login']);
+        });
     }
 }
