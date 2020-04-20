@@ -6,6 +6,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {SearchCityPage} from "../search-city/search-city.page";
 import {RunningLevelPage} from "../running-level/running-level.page";
 import {RunningLevel} from "../../_models/RunningLevel";
+import {FormControl, Validators} from "@angular/forms";
+import {ErrorMatcherService} from "../../_services/error-matcher.service";
 
 @Component({
   selector: 'app-update-profile',
@@ -21,7 +23,28 @@ export class UpdateProfilePage implements OnInit {
   public choiceBirthday: string;
   public userUpdated: User;
 
-  constructor(private modalController: ModalController, private camera: Camera, private alertController: AlertController) { }
+    public nameFormControl: FormControl = new FormControl('', [
+        Validators.required,
+        Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
+        Validators.minLength(2)
+    ]);
+    public firstNameFormControl: FormControl = new FormControl('', [
+        Validators.required,
+        Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
+        Validators.minLength(2)
+    ]);
+    public cityFormControl: FormControl = new FormControl('', [
+        Validators.required,
+    ]);
+    public sexeFormControl: FormControl = new FormControl('', [
+        Validators.required,
+    ]);
+    public birthdayFormControl = new FormControl('', [
+        Validators.required
+    ]);
+    public matcher: ErrorMatcherService = new ErrorMatcherService();
+
+    constructor(private modalController: ModalController, private camera: Camera, private alertController: AlertController) { }
 
   public dismissModalUpdateProfile(): void {
     this.modalController.dismiss();
@@ -77,16 +100,15 @@ export class UpdateProfilePage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    this.userUpdated.runningLevel = data.runningLevel;
+    console.log(data);
+    this.userUpdated.runningLevel = Object.assign(new RunningLevel(), {
+        name: data.runningLevel.name
+    });
   }
 
   private async changePicture(isCover: boolean, source: string): Promise<void> {
     const image: string = (source === 'library') ? await this.openLibrary() : await this.openCamera();
-    if(isCover) {
-      this.userUpdated.cover = 'data:image/jpg;base64,' + image;
-    }else{
-      this.userUpdated.picture = 'data:image/jpg;base64,' + image;
-    }
+    isCover ? this.userUpdated.cover = 'data:image/jpg;base64,' + image : this.userUpdated.picture = 'data:image/jpg;base64,' + image;
   }
 
   private async openCamera(): Promise<string> {
