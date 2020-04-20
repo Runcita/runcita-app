@@ -12,9 +12,9 @@ export class RunningLevelPage implements OnInit {
 
   constructor(public modalController: ModalController) { }
 
-  public dismissModalRunningLevel(runningLevel: string): void {
+  public dismissModalRunningLevel(nameRunningLevel: string, idRunningLevel: number): void {
     this.modalController.dismiss({
-      runningLevel: Object.assign(new RunningLevel(), {name: runningLevel})
+      runningLevel: Object.assign(new RunningLevel(), {name: nameRunningLevel, id: idRunningLevel})
     });
   }
 

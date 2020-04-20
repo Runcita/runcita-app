@@ -23,28 +23,28 @@ export class UpdateProfilePage implements OnInit {
   public choiceBirthday: string;
   public userUpdated: User;
 
-    public nameFormControl: FormControl = new FormControl('', [
-        Validators.required,
-        Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
-        Validators.minLength(2)
-    ]);
-    public firstNameFormControl: FormControl = new FormControl('', [
-        Validators.required,
-        Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
-        Validators.minLength(2)
-    ]);
-    public cityFormControl: FormControl = new FormControl('', [
-        Validators.required,
-    ]);
-    public sexeFormControl: FormControl = new FormControl('', [
-        Validators.required,
-    ]);
-    public birthdayFormControl = new FormControl('', [
-        Validators.required
-    ]);
-    public matcher: ErrorMatcherService = new ErrorMatcherService();
+  public nameFormControl: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
+    Validators.minLength(2)
+  ]);
+  public firstNameFormControl: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
+    Validators.minLength(2)
+  ]);
+  public cityFormControl: FormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  public sexeFormControl: FormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  public birthdayFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  public matcher: ErrorMatcherService = new ErrorMatcherService();
 
-    constructor(private modalController: ModalController, private camera: Camera, private alertController: AlertController) { }
+  constructor(private modalController: ModalController, private camera: Camera, private alertController: AlertController) { }
 
   public dismissModalUpdateProfile(): void {
     this.modalController.dismiss();
@@ -101,6 +101,7 @@ export class UpdateProfilePage implements OnInit {
     await modal.present();
     const { data } = await modal.onWillDismiss();
     this.userUpdated.runningLevel = Object.assign(new RunningLevel(), {
+        id: data.runningLevel.id,
         name: data.runningLevel.name
     });
   }
