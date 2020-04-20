@@ -23,7 +23,6 @@ export class InitializationPage implements OnInit {
           });
         }, () => {
           this.storage.get(this.alreadyOpenApp).then((alreadyOpenApp) => {
-            console.log('toto', alreadyOpenApp);
             if (alreadyOpenApp) {
               // autentification false & already open app => redirect login
               this.router.navigate(['/signin']);

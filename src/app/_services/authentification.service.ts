@@ -25,28 +25,6 @@ export class AuthenticationService {
         return this.token;
     }
 
-    public getJwtStorage(): Observable<any> {
-        return new Observable(observer => {
-            this.storage.get(this.jwtTokenKeyStorage).then(jwt => {
-                if (jwt) {
-                    this.token = jwt;
-                    this.authenticate().subscribe(
-                        () => {
-                            observer.next();
-                            observer.complete();
-                        },
-                        () => {
-                            observer.error();
-                            observer.complete();
-                        });
-                } else {
-                    observer.error();
-                    observer.complete();
-                }
-            });
-        });
-    }
-
     public isAuthentificated(): boolean {
         return this.token !== undefined && this.currentUser !== undefined;
     }
@@ -72,9 +50,40 @@ export class AuthenticationService {
             }));
     }
 
+    public getJwtStorage(): Observable<boolean> {
+        return new Observable(observer => {
+            this.storage.get(this.jwtTokenKeyStorage).then(jwt => {
+                if (jwt) {
+                    this.token = jwt;
+                    this.authenticate().subscribe(
+                        () => {
+                            // if token exists & is valid
+                            observer.next();
+                            observer.complete();
+                        },
+                        () => {
+                            // if token exists & is not valid
+                            this.removeJwtStorage().then(() => {
+                                this.token = undefined;
+                                observer.error();
+                                observer.complete();
+                            });
+                        });
+                } else {
+                    // if token don't exists
+                    observer.error();
+                    observer.complete();
+                }
+            });
+        });
+    }
+
+    private removeJwtStorage(): Promise<boolean> {
+        return this.storage.remove(this.jwtTokenKeyStorage);
+    }
+
     public logout(): void {
-        this.storage.remove(this.jwtTokenKeyStorage).then(() => {
-            this.currentUser = undefined;
+        this.removeJwtStorage().then(() => {
             this.router.navigate(['/login']);
         });
     }
