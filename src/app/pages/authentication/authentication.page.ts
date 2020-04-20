@@ -15,7 +15,7 @@ import {Signup} from '../../_models/Signup';
 export class AuthenticationPage implements OnInit {
 
   public user: Signup = Object.assign(new Signup(), {
-    profile: Object.assign(new Signup(), {
+    user: Object.assign(new Signup(), {
       city: new City()
     })
   });
@@ -67,7 +67,7 @@ export class AuthenticationPage implements OnInit {
   }
 
   public signup(): void {
-    this.user.profile.birthday = this.choiceBirthday.getTime();
+    this.user.user.birthday = this.choiceBirthday.getTime();
     console.log(this.user);
   }
 
@@ -78,7 +78,7 @@ export class AuthenticationPage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    this.user.profile.city = Object.assign(new City(), {
+    this.user.user.city = Object.assign(new City(), {
       name: data.city.name,
       code: data.city.code
     });

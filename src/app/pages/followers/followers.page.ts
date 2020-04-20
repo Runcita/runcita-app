@@ -12,7 +12,7 @@ import {OtherProfilePage} from "../other-profile/other-profile.page";
 export class FollowersPage implements OnInit {
 
   @Input() subscription: boolean;
-  @Input() profile: User;
+  @Input() user: User;
   public users: Array<User> = [];
 
   constructor(public modalController: ModalController) { }

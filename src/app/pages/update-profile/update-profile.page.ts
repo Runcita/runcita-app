@@ -14,12 +14,12 @@ import {RunningLevel} from "../../_models/RunningLevel";
 })
 export class UpdateProfilePage implements OnInit {
 
-  @Input() profile: User;
+  @Input() user: User;
   public customActionSheetSexe: object = {
     header: 'Selectionnez votre sexe',
   };
   public choiceBirthday: string;
-  public profileUpdated: User;
+  public userUpdated: User;
 
   constructor(private modalController: ModalController, private camera: Camera, private alertController: AlertController) { }
 
@@ -51,9 +51,9 @@ export class UpdateProfilePage implements OnInit {
   }
 
   public updateProfile(): void {
-    this.profile = this.profileUpdated;
-    this.profile.birthday = new Date(this.choiceBirthday).getTime();
-    console.log(this.profile)
+    this.user = this.userUpdated;
+    this.user.birthday = new Date(this.choiceBirthday).getTime();
+    console.log(this.user)
     this.dismissModalUpdateProfile();
   }
 
@@ -64,7 +64,7 @@ export class UpdateProfilePage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    this.profileUpdated.city = Object.assign(new City(), {
+    this.userUpdated.city = Object.assign(new City(), {
       name: data.city.name,
       code: data.city.code
     });
@@ -77,15 +77,15 @@ export class UpdateProfilePage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    this.profileUpdated.runningLevel = data.runningLevel;
+    this.userUpdated.runningLevel = data.runningLevel;
   }
 
   private async changePicture(isCover: boolean, source: string): Promise<void> {
     const image: string = (source === 'library') ? await this.openLibrary() : await this.openCamera();
     if(isCover) {
-      this.profileUpdated.cover = 'data:image/jpg;base64,' + image;
+      this.userUpdated.cover = 'data:image/jpg;base64,' + image;
     }else{
-      this.profileUpdated.picture = 'data:image/jpg;base64,' + image;
+      this.userUpdated.picture = 'data:image/jpg;base64,' + image;
     }
   }
 
@@ -116,16 +116,16 @@ export class UpdateProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    this.choiceBirthday = new Date(this.profile.birthday).toISOString().substr(0,10);
-    this.profileUpdated = Object.assign(new User(), {
-      firstName: this.profile.firstName,
-      lastName: this.profile.lastName,
-      sexe: this.profile.sexe,
-      description: (this.profile.description === null) ? '' : this.profile.description,
-      runningLevel: (this.profile.runningLevel === null) ? Object.assign(new RunningLevel(), {name: 'default'}) : this.profile.runningLevel,
-      picture: (this.profile.picture === null) ? '../../assets/mock/default-profile.png' : this.profile.picture,
-      cover: (this.profile.cover === null) ? '../../assets/mock/default-banner.png' : this.profile.cover,
-      city: (this.profile.city === null) ? new City() : this.profile.city
+    this.choiceBirthday = new Date(this.user.birthday).toISOString().substr(0,10);
+    this.userUpdated = Object.assign(new User(), {
+      firstName: this.user.firstName,
+      lastName: this.user.lastName,
+      sexe: this.user.sexe,
+      description: (this.user.description === null) ? '' : this.user.description,
+      runningLevel: (this.user.runningLevel === null) ? Object.assign(new RunningLevel(), {name: 'default'}) : this.user.runningLevel,
+      picture: (this.user.picture === null) ? '../../assets/mock/default-profile.png' : this.user.picture,
+      cover: (this.user.cover === null) ? '../../assets/mock/default-banner.png' : this.user.cover,
+      city: (this.user.city === null) ? new City() : this.user.city
     });
   }
 

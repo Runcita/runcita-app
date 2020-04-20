@@ -9,15 +9,15 @@
 
 <ion-content>
   <ion-card class="card-update">
-    <img [src]="profileUpdated.cover" class="image-header header-cover" (click)="presentAlertCamera(true)">
+    <img [src]="userUpdated.cover" class="image-header header-cover" (click)="presentAlertCamera(true)">
     <ion-avatar class="avatar" (click)="presentAlertCamera(false)">
-      <img [src]="profileUpdated.picture" class="image-header">
+      <img [src]="userUpdated.picture" class="image-header">
     </ion-avatar>
     <ion-card-content class="ion-no-padding">
       <form (ngSubmit)="updateProfile()">
         <ion-item>
           <ion-label position="stacked">Nom <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input placeholder="De 2 à 20 caractères" #name="ngModel" minlength="2" maxlength="20" required type="text" [(ngModel)]="profileUpdated.lastName" name="lastName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
+          <ion-input placeholder="De 2 à 20 caractères" #name="ngModel" minlength="2" maxlength="20" required type="text" [(ngModel)]="userUpdated.lastName" name="lastName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
         </ion-item>
         <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
           <ion-item *ngIf="name.errors.required" lines="none">
@@ -35,7 +35,7 @@
         </div>
         <ion-item>
           <ion-label position="stacked">Prénom <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input minlength="2" maxlength="20" placeholder="De 2 à 20 caractères" required #firstName="ngModel" type="text"  [(ngModel)]="profileUpdated.firstName" name="firstName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
+          <ion-input minlength="2" maxlength="20" placeholder="De 2 à 20 caractères" required #firstName="ngModel" type="text" [(ngModel)]="userUpdated.firstName" name="firstName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
         </ion-item>
         <div class="error-container" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
           <ion-item *ngIf="firstName.errors.required" lines="none">
@@ -53,7 +53,7 @@
         </div>
         <ion-item>
           <ion-label position="stacked">Ville <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input placeholder="Choisir" #city="ngModel" required type="text" readonly [(ngModel)]="profileUpdated.city.name" (click)="modalSearchCity()" name="city"></ion-input>
+          <ion-input placeholder="Choisir" #city="ngModel" required type="text" readonly [(ngModel)]="userUpdated.city.name" (click)="modalSearchCity()" name="city"></ion-input>
         </ion-item>
         <div class="error-container" *ngIf="city.invalid && (city.dirty || city.touched)">
           <ion-item *ngIf="city.errors.required" lines="none">
@@ -63,7 +63,7 @@
         </div>
         <ion-item>
           <ion-label position="stacked">Sexe <ion-text color="danger">*</ion-text></ion-label>
-          <ion-select placeholder="Choisir" [interfaceOptions]="customActionSheetSexe" cancel-text="Retour" required #sexe="ngModel" interface="action-sheet" [(ngModel)]="profileUpdated.sexe" [ngModelOptions]="{standalone: true}">
+          <ion-select placeholder="Choisir" [interfaceOptions]="customActionSheetSexe" cancel-text="Retour" required #sexe="ngModel" interface="action-sheet" [(ngModel)]="userUpdated.sexe" [ngModelOptions]="{standalone: true}">
             <ion-select-option [value]="true">Fille</ion-select-option>
             <ion-select-option [value]="false">Garçon</ion-select-option>
           </ion-select>
@@ -77,9 +77,9 @@
         <ion-item>
           <ion-label position="stacked">Niveau de course</ion-label>
           <ion-thumbnail slot="end">
-            <img src="../../assets/runningLevel/{{profileUpdated.runningLevel.name}}.png">
+            <img src="../../assets/runningLevel/{{userUpdated.runningLevel.name}}.png">
           </ion-thumbnail>
-          <ion-input placeholder="Choisir" type="text" readonly [(ngModel)]="profileUpdated.runningLevel.name" (click)="modalRunningLevel()" name="runningLevel"></ion-input>
+          <ion-input placeholder="Choisir" type="text" readonly [(ngModel)]="userUpdated.runningLevel.name" (click)="modalRunningLevel()" name="runningLevel"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Date de naissance <ion-text color="danger">*</ion-text></ion-label>
@@ -93,7 +93,7 @@
         </div>
         <ion-item>
           <ion-label position="floating">Description</ion-label>
-          <ion-textarea [(ngModel)]="profileUpdated.description" rows="3" name="desc"></ion-textarea>
+          <ion-textarea [(ngModel)]="userUpdated.description" rows="3" name="desc"></ion-textarea>
         </ion-item>
         <ion-button class="button-ok" [disabled]="!(city.valid && firstName.valid && name.valid && birthday.valid && sexe.valid)" type="submit" expand="block">Enregistrer</ion-button>
       </form>

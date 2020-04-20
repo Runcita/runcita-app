@@ -2,10 +2,10 @@
   <ion-card-header class="card-activity-padding">
     <ion-item lines="none">
       <ion-avatar slot="start" class="avatar-oragniser-activity">
-        <img [src]="activity.organiser.profile.picture">
+        <img [src]="activity.organiser.picture">
       </ion-avatar>
       <ion-label>
-        <h3><b>{{activity.organiser.profile.firstName}} {{activity.organiser.profile.lastName}}</b></h3>
+        <h3><b>{{activity.organiser.firstName}} {{activity.organiser.lastName}}</b></h3>
         <h4>{{dateToFrench(activity.date)}}</h4>
         <p>
           <ion-icon name="people"></ion-icon> {{activity.participants.length}} |

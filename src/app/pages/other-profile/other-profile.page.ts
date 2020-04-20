@@ -10,7 +10,7 @@ import {User} from "../../_models/User";
 export class OtherProfilePage implements OnInit {
 
   @Input() idUser: number;
-  public profile: User;
+  public user: User;
 
   constructor(public modalController: ModalController) { }
 

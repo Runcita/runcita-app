@@ -16,7 +16,7 @@ import {RunningType} from "../../_models/RunningType";
 export class ProfileComponent implements OnInit {
 
 
-    @Input() public profile: User;
+    @Input() public user: User;
     public nbSubscriber: number = 34;
     public nbSubscription: number = 46;
     public subscriber: boolean = false;
@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
             component: FollowersPage,
             componentProps : {
                 myFollow : false,
-                profile : this.profile
+                profile : this.user
             },
             swipeToClose: true
         });
@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
             component: FollowersPage,
             componentProps : {
                 myFollow : true,
-                profile : this.profile
+                profile : this.user
             },
             swipeToClose: true
         });
@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
         const modal = await this.modalController.create({
             component: UpdateProfilePage,
             componentProps : {
-                profile : this.profile
+                profile : this.user
             },
             swipeToClose: true
         });
@@ -80,18 +80,15 @@ export class ProfileComponent implements OnInit {
             runningType: Object.assign(new RunningType(), {id: 1, name: 'Fractionné'}),
             runningLevel: Object.assign(new RunningLevel(), {name: 'lapin'}),
             organiser: Object.assign(new User(), {
-                id: 1,
-                profile: Object.assign(new User(), {
-                    lastName: 'Landschoot',
-                    firstName: 'Tony',
-                    description: '20yo, Lille, 2* semi et actuellement en prepa marathon',
-                    picture: '../../assets/mock/profile.jpg',
-                    cover: '../../assets/mock/lille.jpg',
-                    sexe: false,
-                    runningLevel: Object.assign(new RunningLevel(), {name: 'gazelle'}),
-                    birthday: 924035243699,
-                    city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
-                })
+                lastName: 'Landschoot',
+                firstName: 'Tony',
+                description: '20yo, Lille, 2* semi et actuellement en prepa marathon',
+                picture: '../../assets/mock/profile.jpg',
+                cover: '../../assets/mock/lille.jpg',
+                sexe: false,
+                runningLevel: Object.assign(new RunningLevel(), {name: 'gazelle'}),
+                birthday: 924035243699,
+                city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
             }),
             participants: []
         }),
@@ -105,18 +102,15 @@ export class ProfileComponent implements OnInit {
             runningType: Object.assign(new RunningType(), {id: 1, name: 'Fractionné'}),
             runningLevel: Object.assign(new RunningLevel(), {name: 'panthere'}),
             organiser: Object.assign(new User(), {
-                id: 1,
-                profile: Object.assign(new User(), {
-                    lastName: 'Landschoot',
-                    firstName: 'Ludovic',
-                    description: '20yo, Lille, 2* semi et actuellement en prepa marathon',
-                    picture: '../../assets/mock/lille.jpg',
-                    cover: '../../assets/mock/lille.jpg',
-                    sexe: false,
-                    runningLevel: Object.assign(new RunningLevel(), {name: 'gazelle'}),
-                    birthday: 924035243699,
-                    city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
-                })
+                lastName: 'Landschoot',
+                firstName: 'Ludovic',
+                description: '20yo, Lille, 2* semi et actuellement en prepa marathon',
+                picture: '../../assets/mock/lille.jpg',
+                cover: '../../assets/mock/lille.jpg',
+                sexe: false,
+                runningLevel: Object.assign(new RunningLevel(), {name: 'gazelle'}),
+                birthday: 924035243699,
+                city: Object.assign(new City(), {name: 'Lille', code: '452', postalCodes: ['59000']})
             }),
             participants: []
         }),

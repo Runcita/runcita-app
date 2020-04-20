@@ -4,7 +4,7 @@
   <form (ngSubmit)="signup()" class="form-authentication">
     <mat-form-field class="input-full-width">
       <mat-label>Nom <ion-text color="danger">*</ion-text></mat-label>
-      <input matInput maxlength="20" #name [formControl]="nameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.profile.lastName">
+      <input matInput maxlength="20" #name [formControl]="nameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.user.lastName">
       <mat-hint align="end">{{name.value.length}} / 20</mat-hint>
       <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
         Format non valide
@@ -18,7 +18,7 @@
     </mat-form-field>
     <mat-form-field class="input-full-width">
       <mat-label>Prénom <ion-text color="danger">*</ion-text></mat-label>
-      <input matInput maxlength="20" #firstname [formControl]="firstNameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.profile.firstName">
+      <input matInput maxlength="20" #firstname [formControl]="firstNameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.user.firstName">
       <mat-hint align="end">{{firstname.value.length}} / 20</mat-hint>
       <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
         Format non valide
@@ -65,14 +65,14 @@
     </mat-form-field>
     <mat-form-field class="input-full-width" (click)="modalSearchCity()">
       <mat-label>Ville <ion-text color="danger">*</ion-text></mat-label>
-      <input readonly matInput maxlength="100" type="text" [formControl]="cityFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.profile.city.name">
+      <input readonly matInput maxlength="100" type="text" [formControl]="cityFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.user.city.name">
       <mat-error *ngIf="cityFormControl.hasError('required')">
         La ville est requise
       </mat-error>
     </mat-form-field>
     <mat-form-field class="input-full-width">
       <mat-label>Sexe <ion-text color="danger">*</ion-text></mat-label>
-      <mat-select [(value)]="user.profile.sexe" [formControl]="sexeFormControl" [errorStateMatcher]="matcher">
+      <mat-select [(value)]="user.user.sexe" [formControl]="sexeFormControl" [errorStateMatcher]="matcher">
         <mat-option><ion-text color="primary">Retour</ion-text></mat-option>
         <mat-option [value]="true">Femme</mat-option>
         <mat-option [value]="false">Homme</mat-option>
