@@ -117,7 +117,6 @@ export class UpdateProfilePage implements OnInit {
 
   ngOnInit() {
     this.choiceBirthday = new Date(this.profile.birthday).toISOString().substr(0,10);
-    console.log(this.profile)
     this.profileUpdated = Object.assign(new User(), {
       firstName: this.profile.firstName,
       lastName: this.profile.lastName,

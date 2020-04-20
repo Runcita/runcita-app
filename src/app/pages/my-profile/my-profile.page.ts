@@ -21,8 +21,6 @@ export class MyProfilePage implements OnInit {
     return await modal.present();
   }
 
-  ngOnInit() {
-    console.log(this.authService.currentUserValue);
-  }
+  ngOnInit() {}
 
 }
