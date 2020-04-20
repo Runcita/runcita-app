@@ -1,10 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {City} from "../../_models/City";
 import {AlertController, ModalController} from "@ionic/angular";
-import {Profile} from "../../_models/Profile";
+import {User} from "../../_models/User";
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {SearchCityPage} from "../search-city/search-city.page";
 import {RunningLevelPage} from "../running-level/running-level.page";
+import {RunningLevel} from "../../_models/RunningLevel";
 
 @Component({
   selector: 'app-update-profile',
@@ -13,12 +14,12 @@ import {RunningLevelPage} from "../running-level/running-level.page";
 })
 export class UpdateProfilePage implements OnInit {
 
-  @Input() profile: Profile;
+  @Input() profile: User;
   public customActionSheetSexe: object = {
     header: 'Selectionnez votre sexe',
   };
   public choiceBirthday: string;
-  public profileUpdated: Profile;
+  public profileUpdated: User;
 
   constructor(private modalController: ModalController, private camera: Camera, private alertController: AlertController) { }
 
@@ -116,16 +117,16 @@ export class UpdateProfilePage implements OnInit {
 
   ngOnInit() {
     this.choiceBirthday = new Date(this.profile.birthday).toISOString().substr(0,10);
-    console.log(this.choiceBirthday)
-    this.profileUpdated = Object.assign(new Profile(), {
+    console.log(this.profile)
+    this.profileUpdated = Object.assign(new User(), {
       firstName: this.profile.firstName,
       lastName: this.profile.lastName,
       sexe: this.profile.sexe,
-      description: this.profile.description,
-      runningLevel: this.profile.runningLevel,
-      picture: this.profile.picture,
-      cover: this.profile.cover,
-      city: this.profile.city
+      description: (this.profile.description === null) ? '' : this.profile.description,
+      runningLevel: (this.profile.runningLevel === null) ? Object.assign(new RunningLevel(), {name: 'default'}) : this.profile.runningLevel,
+      picture: (this.profile.picture === null) ? '../../assets/mock/default-profile.png' : this.profile.picture,
+      cover: (this.profile.cover === null) ? '../../assets/mock/default-banner.png' : this.profile.cover,
+      city: (this.profile.city === null) ? new City() : this.profile.city
     });
   }
 

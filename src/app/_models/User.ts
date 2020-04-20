@@ -1,8 +1,15 @@
-import {Profile} from "./Profile";
+import {City} from "./City";
+import {RunningLevel} from "./RunningLevel";
 
 export class User {
     id: number;
-    email: string;
-    password: string;
-    profile: Profile;
+    firstName: string;
+    lastName: string;
+    sexe: boolean;
+    description: string;
+    picture: string;
+    cover: string;
+    birthday: number;
+    city: City;
+    runningLevel: RunningLevel;
 }

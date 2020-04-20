@@ -1,5 +1,5 @@
 <ion-card class="card">
-  <img [src]="profile.cover" class="cover">
+  <img [src]="(profile.cover === null) ? '../../assets/mock/default-banner.png' : profile.cover" class="cover">
   <ion-grid>
     <ion-row>
       <ion-col (click)="modalSubscriber()">
@@ -7,7 +7,7 @@
       </ion-col>
       <ion-col>
         <ion-avatar class="avatar">
-          <img [src]="profile.picture">
+          <img [src]="(profile.picture === null) ? '../../assets/mock/default-profile.png' : profile.picture">
         </ion-avatar>
       </ion-col>
       <ion-col (click)="modalSubscription()">
@@ -26,7 +26,7 @@
     <p>
       <ion-icon name="gift"></ion-icon> {{getAge(profile.birthday)}} ans |
       <ion-icon name="{{profile.sexe ? 'woman' : 'man'}}"></ion-icon> {{profile.sexe ? 'Fille' : 'Garçon'}} | 
-      <ion-icon name="location-sharp"></ion-icon> {{profile.city.name}}
+      <ion-icon name="location-sharp"></ion-icon> {{(profile.city === null) ? 'Non renseigné' : profile.city.name}}
     </p>
     <p class="description-profile">{{profile.description}}</p>
     <ion-grid>
@@ -36,7 +36,7 @@
         </ion-col>
         <ion-col size="2">
           <ion-thumbnail class="running-level">
-            <img src="../../assets/runningLevel/{{profile.runningLevel.name}}.png">
+            <img src="../../assets/runningLevel/{{(profile.runningLevel === null) ? '../../assets/runningLevel/tortue' : profile.runningLevel.name}}.png">
           </ion-thumbnail>
         </ion-col>
         <ion-col>

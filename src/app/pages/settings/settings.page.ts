@@ -3,6 +3,7 @@ import {ModalController} from "@ionic/angular";
 import {ChangeEmailPage} from "../page-settings/change-email/change-email.page";
 import {ChangePasswordPage} from "../page-settings/change-password/change-password.page";
 import {DeleteAccountPage} from "../page-settings/delete-account/delete-account.page";
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-settings',
@@ -14,7 +15,7 @@ export class SettingsPage implements OnInit {
   public toggleDark: boolean = false;
   public toggleNotification: boolean = false;
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, private statusBar: StatusBar) { }
 
   public dismissModalSettings(): void {
     this.modalController.dismiss();
@@ -45,6 +46,7 @@ export class SettingsPage implements OnInit {
   }
 
   changeDarkMode(event) {
+    (event.detail.checked) ? this.statusBar.styleBlackTranslucent() : this.statusBar.styleDefault();
     document.body.classList.toggle('dark', event.detail.checked);
   }
 
