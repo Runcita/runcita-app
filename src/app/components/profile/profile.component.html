@@ -1,5 +1,5 @@
 <ion-card class="card">
-  <img [src]="profile.cover" class="cover">
+  <img [src]="(user.cover === null) ? '../../assets/mock/default-banner.png' : user.cover" class="cover">
   <ion-grid>
     <ion-row>
       <ion-col (click)="modalSubscriber()">
@@ -7,7 +7,7 @@
       </ion-col>
       <ion-col>
         <ion-avatar class="avatar">
-          <img [src]="profile.picture">
+          <img [src]="(user.picture === null) ? '../../assets/mock/default-profile.png' : user.picture">
         </ion-avatar>
       </ion-col>
       <ion-col (click)="modalSubscription()">
@@ -19,16 +19,16 @@
   <ion-button *ngIf="myProfil" size="small" (click)="modaleUpdateProfile()"><ion-icon slot="start" name="create"></ion-icon>Éditer le profil</ion-button>
   <ion-card-header>
     <ion-card-title class="profile-name">
-      {{profile.firstName}} {{profile.lastName}}
+      {{user.firstName}} {{user.lastName}}
     </ion-card-title>
   </ion-card-header>
   <ion-card-content class="ion-no-padding">
     <p>
-      <ion-icon name="gift"></ion-icon> {{getAge(profile.birthday)}} ans |
-      <ion-icon name="{{profile.sexe ? 'woman' : 'man'}}"></ion-icon> {{profile.sexe ? 'Fille' : 'Garçon'}} | 
-      <ion-icon name="location-sharp"></ion-icon> {{profile.city.name}}
+      <ion-icon name="gift"></ion-icon> {{getAge(user.birthday)}} ans |
+      <ion-icon name="{{user.sexe ? 'woman' : 'man'}}"></ion-icon> {{user.sexe ? 'Fille' : 'Garçon'}} | 
+      <ion-icon name="location-sharp"></ion-icon> {{(user.city === null) ? 'Non renseigné' : user.city.name}}
     </p>
-    <p class="description-profile">{{profile.description}}</p>
+    <p class="description-profile">{{user.description}}</p>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -36,7 +36,7 @@
         </ion-col>
         <ion-col size="2">
           <ion-thumbnail class="running-level">
-            <img src="../../assets/runningLevel/{{profile.runningLevel.name}}.png">
+            <img src="../../assets/runningLevel/{{(user.runningLevel === null) ? 'default' : user.runningLevel.name}}.png">
           </ion-thumbnail>
         </ion-col>
         <ion-col>

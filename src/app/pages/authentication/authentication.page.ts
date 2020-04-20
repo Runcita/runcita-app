@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../_models/User';
 import {ModalController} from '@ionic/angular';
 import {SearchCityPage} from '../search-city/search-city.page';
-import {Profile} from '../../_models/Profile';
 import {City} from '../../_models/City';
 import {FormControl, Validators} from '@angular/forms';
 import {ErrorMatcherService} from '../../_services/error-matcher.service';
 import {DateAdapter} from '@angular/material/core';
+import {Signup} from '../../_models/Signup';
 
 @Component({
   selector: 'app-authentication',
@@ -15,8 +14,8 @@ import {DateAdapter} from '@angular/material/core';
 })
 export class AuthenticationPage implements OnInit {
 
-  public user: User = Object.assign(new User(), {
-    profile: Object.assign(new Profile(), {
+  public user: Signup = Object.assign(new Signup(), {
+    user: Object.assign(new Signup(), {
       city: new City()
     })
   });
@@ -68,7 +67,7 @@ export class AuthenticationPage implements OnInit {
   }
 
   public signup(): void {
-    this.user.profile.birthday = this.choiceBirthday.getTime();
+    this.user.user.birthday = this.choiceBirthday.getTime();
     console.log(this.user);
   }
 
@@ -79,7 +78,7 @@ export class AuthenticationPage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    this.user.profile.city = Object.assign(new City(), {
+    this.user.user.city = Object.assign(new City(), {
       name: data.city.name,
       code: data.city.code
     });

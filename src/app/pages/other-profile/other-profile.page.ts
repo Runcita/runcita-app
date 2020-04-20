@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from "@ionic/angular";
+import {User} from "../../_models/User";
 
 @Component({
   selector: 'app-other-profile',
@@ -9,6 +10,7 @@ import {ModalController} from "@ionic/angular";
 export class OtherProfilePage implements OnInit {
 
   @Input() idUser: number;
+  public user: User;
 
   constructor(public modalController: ModalController) { }
 

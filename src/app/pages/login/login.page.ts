@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../_models/User';
+import {Signup} from '../../_models/Signup';
 import {AuthenticationService} from '../../_services/authentification.service';
 import {Router} from '@angular/router';
 import {LoadingController, ToastController} from '@ionic/angular';
@@ -13,7 +13,7 @@ import {ErrorMatcherService} from '../../_services/error-matcher.service';
 })
 export class LoginPage implements OnInit {
 
-  public user: User = new User();
+  public user: Signup = new Signup();
   public loadingSignin: boolean;
 
   public emailFormControl: FormControl = new FormControl('', [
