@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'authentication',
-    loadChildren: () => import('./pages/authentication/authentication.module').then( m => m.AuthenticationPageModule)
+    loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupPageModule)
   },
   {
     path: 'signin',

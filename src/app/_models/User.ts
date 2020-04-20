@@ -1,5 +1,5 @@
-import {City} from "./City";
-import {RunningLevel} from "./RunningLevel";
+import {City} from './City';
+import {RunningLevel} from './RunningLevel';
 
 export class User {
     id: number;

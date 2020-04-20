@@ -1,10 +1,10 @@
 <ion-content fullscreen="true">
   <ion-img id="logo-authentication" src="../assets/icon/favicon.png"></ion-img>
   <h2>Inscrivez vous!</h2>
-  <form (ngSubmit)="signup()" class="form-authentication">
+  <form (ngSubmit)="sendSignup()" class="form-authentication">
     <mat-form-field class="input-full-width">
       <mat-label>Nom <ion-text color="danger">*</ion-text></mat-label>
-      <input matInput maxlength="20" #name [formControl]="nameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.user.lastName">
+      <input matInput maxlength="20" #name [formControl]="nameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="signup.user.lastName">
       <mat-hint align="end">{{name.value.length}} / 20</mat-hint>
       <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
         Format non valide
@@ -18,7 +18,7 @@
     </mat-form-field>
     <mat-form-field class="input-full-width">
       <mat-label>Prénom <ion-text color="danger">*</ion-text></mat-label>
-      <input matInput maxlength="20" #firstname [formControl]="firstNameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.user.firstName">
+      <input matInput maxlength="20" #firstname [formControl]="firstNameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="signup.user.firstName">
       <mat-hint align="end">{{firstname.value.length}} / 20</mat-hint>
       <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !firstNameFormControl.hasError('required')">
         Format non valide
@@ -32,7 +32,7 @@
     </mat-form-field>
     <mat-form-field class="input-full-width">
       <mat-label>Email <ion-text color="danger">*</ion-text></mat-label>
-      <input matInput maxlength="70" #email [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.email">
+      <input matInput maxlength="70" #email [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="signup.email">
       <mat-hint align="end">{{email.value.length}} / 70</mat-hint>
       <mat-error *ngIf="emailFormControl.hasError('pattern') && !emailFormControl.hasError('required')">
         Format non valide
@@ -43,7 +43,7 @@
     </mat-form-field>
     <mat-form-field class="input-full-width">
       <mat-label>Mot de passe <ion-text color="danger">*</ion-text></mat-label>
-      <input (change)="updateConfirmPasswordFormControl()" matInput maxlength="100" type="password" #password [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.password">
+      <input (change)="updateConfirmPasswordFormControl()" matInput maxlength="100" type="password" #password [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [(ngModel)]="signup.password">
       <mat-hint align="end">{{password.value.length}} / 100</mat-hint>
       <mat-error *ngIf="passwordFormControl.hasError('minlength')">
         8 caractères minimum
@@ -65,14 +65,14 @@
     </mat-form-field>
     <mat-form-field class="input-full-width" (click)="modalSearchCity()">
       <mat-label>Ville <ion-text color="danger">*</ion-text></mat-label>
-      <input readonly matInput maxlength="100" type="text" [formControl]="cityFormControl" [errorStateMatcher]="matcher" [(ngModel)]="user.user.city.name">
+      <input readonly matInput maxlength="100" type="text" [formControl]="cityFormControl" [errorStateMatcher]="matcher" [(ngModel)]="signup.user.city.name">
       <mat-error *ngIf="cityFormControl.hasError('required')">
         La ville est requise
       </mat-error>
     </mat-form-field>
     <mat-form-field class="input-full-width">
       <mat-label>Sexe <ion-text color="danger">*</ion-text></mat-label>
-      <mat-select [(value)]="user.user.sexe" [formControl]="sexeFormControl" [errorStateMatcher]="matcher">
+      <mat-select [(value)]="signup.user.sexe" [formControl]="sexeFormControl" [errorStateMatcher]="matcher">
         <mat-option><ion-text color="primary">Retour</ion-text></mat-option>
         <mat-option [value]="true">Femme</mat-option>
         <mat-option [value]="false">Homme</mat-option>
@@ -90,14 +90,13 @@
         La date de naissance est requise
       </mat-error>
     </mat-form-field>
-    <ion-button [disabled]="!(sexeFormControl.valid &&
-    nameFormControl.valid &&
-    firstNameFormControl.valid &&
-    cityFormControl.valid &&
-    emailFormControl.valid &&
-    passwordFormControl.valid &&
-    confirmPasswordFormControl.valid &&
-    birthdayFormControl.valid)" expand="block" type="submit">S'inscrire</ion-button>
+    <ion-button [disabled]="!(sexeFormControl.valid && nameFormControl.valid && firstNameFormControl.valid &&
+    cityFormControl.valid && emailFormControl.valid && passwordFormControl.valid && confirmPasswordFormControl.valid &&
+    birthdayFormControl.valid) || loadingSignup" expand="block" type="submit">
+      S'inscrire
+      <ion-icon slot="end" name="log-in-outline" *ngIf="!loadingSignup"></ion-icon>
+      <ion-spinner *ngIf="loadingSignup" name="lines-small"></ion-spinner>
+    </ion-button>
   </form>
   <ion-button id="btn-signin" fill="clear" color="secondary" size="small" [routerLink]="['/signin']">J'ai déja un compte</ion-button>
 </ion-content>
