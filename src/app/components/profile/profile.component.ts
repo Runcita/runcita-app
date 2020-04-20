@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
             component: FollowersPage,
             componentProps : {
                 myFollow : false,
-                profile : this.user
+                user : this.user
             },
             swipeToClose: true
         });
@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
             component: FollowersPage,
             componentProps : {
                 myFollow : true,
-                profile : this.user
+                user : this.user
             },
             swipeToClose: true
         });
@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
         const modal = await this.modalController.create({
             component: UpdateProfilePage,
             componentProps : {
-                profile : this.user
+                user : this.user
             },
             swipeToClose: true
         });

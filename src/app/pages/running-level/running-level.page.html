@@ -10,7 +10,7 @@
 <ion-content>
   <ion-list>
     <ion-list-header>Vous etes plutot</ion-list-header>
-    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('tortue')">
+    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('tortue', 0)">
       <ion-thumbnail slot="start">
         <img src="../../assets/runningLevel/tortue.png">
       </ion-thumbnail>
@@ -21,7 +21,7 @@
         <p><ion-icon name="today"></ion-icon> De temps en temps</p>
       </ion-label>
     </ion-item>
-    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('gazelle')">
+    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('gazelle', 1)">
       <ion-thumbnail slot="start">
         <img src="../../assets/runningLevel/gazelle.png">
       </ion-thumbnail>
@@ -32,7 +32,7 @@
         <p><ion-icon name="today"></ion-icon> Souvent</p>
       </ion-label>
     </ion-item>
-    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('lapin')">
+    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('lapin', 2)">
       <ion-thumbnail slot="start">
         <img src="../../assets/runningLevel/lapin.png">
       </ion-thumbnail>
@@ -43,7 +43,7 @@
         <p><ion-icon name="today"></ion-icon> Régulièrement</p>
       </ion-label>
     </ion-item>
-    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('panthere')">
+    <ion-item lines="none" class="item" (click)="dismissModalRunningLevel('panthere', 3)">
       <ion-thumbnail slot="start">
         <img src="../../assets/runningLevel/panthere.png">
       </ion-thumbnail>

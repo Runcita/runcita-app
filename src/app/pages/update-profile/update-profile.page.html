@@ -14,88 +14,78 @@
       <img [src]="userUpdated.picture" class="image-header">
     </ion-avatar>
     <ion-card-content class="ion-no-padding">
-      <form (ngSubmit)="updateProfile()">
-        <ion-item>
-          <ion-label position="stacked">Nom <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input placeholder="De 2 à 20 caractères" #name="ngModel" minlength="2" maxlength="20" required type="text" [(ngModel)]="userUpdated.lastName" name="lastName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
-        </ion-item>
-        <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
-          <ion-item *ngIf="name.errors.required" lines="none">
-            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label style="font-size: small" color="danger">Le nom est requis</ion-label>
-          </ion-item>
-          <ion-item *ngIf="name.errors.minlength" lines="none">
-            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label style="font-size: small" color="danger">2 caractères minimum</ion-label>
-          </ion-item>
-          <ion-item *ngIf="name.errors.pattern" lines="none">
-            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label style="font-size: small" color="danger">Format non valide</ion-label>
-          </ion-item>
-        </div>
-        <ion-item>
-          <ion-label position="stacked">Prénom <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input minlength="2" maxlength="20" placeholder="De 2 à 20 caractères" required #firstName="ngModel" type="text" [(ngModel)]="userUpdated.firstName" name="firstName" pattern="[A-Za-zÀ-ÖØ-öø-ÿ-]+"></ion-input>
-        </ion-item>
-        <div class="error-container" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
-          <ion-item *ngIf="firstName.errors.required" lines="none">
-            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label style="font-size: small" color="danger">Le prénom est requis</ion-label>
-          </ion-item>
-          <ion-item *ngIf="firstName.errors.minlength" lines="none">
-            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label style="font-size: small" color="danger">2 caractères minimum</ion-label>
-          </ion-item>
-          <ion-item *ngIf="firstName.errors.pattern" lines="none">
-            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label style="font-size: small" color="danger">Format non valide</ion-label>
-          </ion-item>
-        </div>
-        <ion-item>
-          <ion-label position="stacked">Ville <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input placeholder="Choisir" #city="ngModel" required type="text" readonly [(ngModel)]="userUpdated.city.name" (click)="modalSearchCity()" name="city"></ion-input>
-        </ion-item>
-        <div class="error-container" *ngIf="city.invalid && (city.dirty || city.touched)">
-          <ion-item *ngIf="city.errors.required" lines="none">
-            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label style="font-size: small" color="danger">Le ville est requise</ion-label>
-          </ion-item>
-        </div>
-        <ion-item>
-          <ion-label position="stacked">Sexe <ion-text color="danger">*</ion-text></ion-label>
-          <ion-select placeholder="Choisir" [interfaceOptions]="customActionSheetSexe" cancel-text="Retour" required #sexe="ngModel" interface="action-sheet" [(ngModel)]="userUpdated.sexe" [ngModelOptions]="{standalone: true}">
-            <ion-select-option [value]="true">Fille</ion-select-option>
-            <ion-select-option [value]="false">Garçon</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <div class="error-container" *ngIf="sexe.invalid && (sexe.dirty || sexe.touched)">
-          <ion-item *ngIf="sexe.errors.required" lines="none">
-            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label style="font-size: small" color="danger">Le sexe est requis</ion-label>
-          </ion-item>
-        </div>
-        <ion-item>
-          <ion-label position="stacked">Niveau de course</ion-label>
-          <ion-thumbnail slot="end">
-            <img src="../../assets/runningLevel/{{userUpdated.runningLevel.name}}.png">
-          </ion-thumbnail>
-          <ion-input placeholder="Choisir" type="text" readonly [(ngModel)]="userUpdated.runningLevel.name" (click)="modalRunningLevel()" name="runningLevel"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Date de naissance <ion-text color="danger">*</ion-text></ion-label>
-          <ion-datetime placeholder="Choisir" cancel-text="Retour" done-text="Ok" required #birthday="ngModel" [(ngModel)]="choiceBirthday" [ngModelOptions]="{standalone: true}" display-format="DD-MM-YYYY"></ion-datetime>
-        </ion-item>
-        <div class="error-container" *ngIf="birthday.invalid && (birthday.dirty || birthday.touched)">
-          <ion-item *ngIf="birthday.errors.required" lines="none">
-            <ion-icon size="small" color="danger" slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label style="font-size: small" color="danger">Le date de naissance est requise</ion-label>
-          </ion-item>
-        </div>
-        <ion-item>
-          <ion-label position="floating">Description</ion-label>
-          <ion-textarea [(ngModel)]="userUpdated.description" rows="3" name="desc"></ion-textarea>
-        </ion-item>
-        <ion-button class="button-ok" [disabled]="!(city.valid && firstName.valid && name.valid && birthday.valid && sexe.valid)" type="submit" expand="block">Enregistrer</ion-button>
+      <form (ngSubmit)="updateProfile()" class="form-update">
+        <mat-form-field class="input-full-width">
+          <mat-label>Nom <ion-text color="danger">*</ion-text></mat-label>
+          <input matInput maxlength="20" #name name="name" [formControl]="nameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="userUpdated.lastName">
+          <mat-hint align="end">{{name.value.length}} / 20</mat-hint>
+          <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+            Format non valide
+          </mat-error>
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            Le nom est requis
+          </mat-error>
+          <mat-error *ngIf="nameFormControl.hasError('minlength')">
+            2 caractères minimum
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-full-width">
+          <mat-label>Nom <ion-text color="danger">*</ion-text></mat-label>
+          <input matInput maxlength="20" #firstName name="firstname" [formControl]="firstNameFormControl" [errorStateMatcher]="matcher" [(ngModel)]="userUpdated.firstName">
+          <mat-hint align="end">{{firstName.value.length}} / 20</mat-hint>
+          <mat-error *ngIf="firstNameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+            Format non valide
+          </mat-error>
+          <mat-error *ngIf="firstNameFormControl.hasError('required')">
+            Le prénom est requis
+          </mat-error>
+          <mat-error *ngIf="firstNameFormControl.hasError('minlength')">
+            2 caractères minimum
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-full-width" (click)="modalSearchCity()">
+          <mat-label>Ville <ion-text color="danger">*</ion-text></mat-label>
+          <input readonly matInput maxlength="100" type="text" [formControl]="cityFormControl" [errorStateMatcher]="matcher" [(ngModel)]="userUpdated.city.name">
+          <mat-error *ngIf="cityFormControl.hasError('required')">
+            La ville est requise
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-full-width">
+          <mat-label>Sexe <ion-text color="danger">*</ion-text></mat-label>
+          <mat-select [(value)]="userUpdated.sexe" [(ngModel)]="userUpdated.sexe" [formControl]="sexeFormControl" [errorStateMatcher]="matcher">
+            <mat-option><ion-text color="primary">Retour</ion-text></mat-option>
+            <mat-option [value]="true">Femme</mat-option>
+            <mat-option [value]="false">Homme</mat-option>
+          </mat-select>
+          <mat-error *ngIf="sexeFormControl.hasError('required')">
+            Le sexe est requis
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-full-width" (click)="modalRunningLevel()">
+          <mat-label>Niveau de course</mat-label>
+          <input readonly matInput maxlength="100" type="text" [(ngModel)]="userUpdated.runningLevel.name" name="runningLevel">
+          <img width="40px" height="40px" matSuffix src="../../assets/runningLevel/{{userUpdated.runningLevel.name}}.png">
+        </mat-form-field>
+        <mat-form-field class="input-full-width">
+          <mat-label>Date de naissance <ion-text color="danger">*</ion-text></mat-label>
+          <input readonly matInput [matDatepicker]="picker" [(ngModel)]="choiceBirthday" [formControl]="birthdayFormControl" [errorStateMatcher]="matcher">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="birthdayFormControl.hasError('required')">
+            La date de naissance est requise
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput rows="3" maxlength="300" #desc [(ngModel)]="userUpdated.description" name="desc"></textarea>
+          <mat-hint align="end">{{desc.value.length}} / 300</mat-hint>
+        </mat-form-field>
+        <ion-button class="button-ok" [disabled]="!(nameFormControl.valid &&
+        firstNameFormControl.valid &&
+        cityFormControl.valid &&
+        birthdayFormControl.valid &&
+        sexeFormControl.valid
+        )" type="submit" expand="block">Enregistrer</ion-button>
       </form>
     </ion-card-content>
   </ion-card>
