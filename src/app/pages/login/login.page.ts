@@ -49,10 +49,10 @@ export class LoginPage implements OnInit {
 
   private async presentErrorAuthentificationFailed(): Promise<void> {
     const toast = await this.toastController.create({
-      message: 'L\'email ou le mot de passe est incorrect.',
-      duration: 2000,
+      message: 'L\'email ou le mot de passe est incorrect',
+      duration: 3000,
       position: 'bottom',
-      color: 'red',
+      color: 'danger',
       keyboardClose: true,
     });
     await toast.present();

@@ -1,24 +1,31 @@
 import {Component, OnInit} from '@angular/core';
-import {ModalController} from '@ionic/angular';
+import {ModalController, ToastController} from '@ionic/angular';
 import {SearchCityPage} from '../search-city/search-city.page';
 import {City} from '../../_models/City';
 import {FormControl, Validators} from '@angular/forms';
 import {ErrorMatcherService} from '../../_services/error-matcher.service';
 import {DateAdapter} from '@angular/material/core';
 import {Signup} from '../../_models/Signup';
+import {User} from '../../_models/User';
+import {AuthenticationService} from '../../_services/authentification.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-authentication',
-  templateUrl: './authentication.page.html',
-  styleUrls: ['./authentication.page.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
 })
-export class AuthenticationPage implements OnInit {
+export class SignupPage implements OnInit {
 
-  public user: Signup = Object.assign(new Signup(), {
-    user: Object.assign(new Signup(), {
+  public loadingSignup: boolean;
+  public signup: Signup = Object.assign(new Signup(), {
+    user: Object.assign(new User(), {
       city: new City()
     })
   });
+  public confirmPassword: string = '';
+  public choiceBirthday: Date;
+
   public nameFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.pattern('[A-Za-zÀ-ÖØ-öø-ÿ-]+'),
@@ -31,7 +38,7 @@ export class AuthenticationPage implements OnInit {
   ]);
   public emailFormControl: FormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern('^\\w+([\\.-]?\w+)*@\\w+([\.-]?\\w+)*(\\.\\w{2,3})+$'),
+    Validators.pattern('\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$'),
   ]);
   public passwordFormControl: FormControl = new FormControl('', [
     Validators.required,
@@ -39,7 +46,7 @@ export class AuthenticationPage implements OnInit {
   ]);
   public confirmPasswordFormControl: FormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern(this.user.password),
+    Validators.pattern(this.signup.password),
   ]);
   public cityFormControl = new FormControl('', [
     Validators.required,
@@ -51,24 +58,42 @@ export class AuthenticationPage implements OnInit {
     Validators.required
   ]);
   public matcher: ErrorMatcherService = new ErrorMatcherService();
-  public confirmPassword: string = '';
-  public choiceBirthday: Date;
-  public customActionSheetOptions: object = {
-    header: 'Selectionnez votre sexe',
-  };
 
-  constructor(public modalController: ModalController, private adapter: DateAdapter<any>) { }
+  constructor(public modalController: ModalController, private authenticationService: AuthenticationService, private toastController: ToastController, private router: Router, private adapter: DateAdapter<any>) { }
 
   public updateConfirmPasswordFormControl(): void {
     this.confirmPasswordFormControl = new FormControl('', [
       Validators.required,
-      Validators.pattern(this.user.password),
+      Validators.pattern(this.signup.password),
     ]);
   }
 
-  public signup(): void {
-    this.user.user.birthday = this.choiceBirthday.getTime();
-    console.log(this.user);
+  public sendSignup(): void {
+    this.signup.user.birthday = this.choiceBirthday.getTime();
+    this.loadingSignup = true;
+    this.authenticationService.signup(this.signup)
+        .subscribe(
+            () => {
+              this.authenticationService.loadCurrentUser().subscribe(() => {
+                this.router.navigate(['/home']);
+                this.loadingSignup = false;
+              });
+            },
+            () => {
+              this.presentErrorSignupFailed();
+              this.loadingSignup = false;
+            });
+  }
+
+  private async presentErrorSignupFailed(): Promise<void> {
+    const toast = await this.toastController.create({
+      message: 'Erreur lors de l\'inscription',
+      duration: 3000,
+      position: 'bottom',
+      color: 'danger',
+      keyboardClose: true,
+    });
+    await toast.present();
   }
 
   public async modalSearchCity(): Promise<void> {
@@ -78,7 +103,7 @@ export class AuthenticationPage implements OnInit {
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
-    this.user.user.city = Object.assign(new City(), {
+    this.signup.user.city = Object.assign(new City(), {
       name: data.city.name,
       code: data.city.code
     });

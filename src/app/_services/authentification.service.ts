@@ -6,6 +6,7 @@ import {User} from '../_models/User';
 import {environment} from '../../environments/environment';
 import {Storage} from '@ionic/storage';
 import {Router} from '@angular/router';
+import {Signup} from '../_models/Signup';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -35,6 +36,15 @@ export class AuthenticationService {
 
     public signin(email: string, password: string): Observable<string> {
         return this.http.post(`${environment.apiUrl}/auth/signin`, { email, password }, {responseType: 'text'})
+            .pipe(map(token => {
+                this.storage.set(this.jwtTokenKeyStorage, token);
+                this.token = token;
+                return token;
+            }));
+    }
+
+    public signup(signup: Signup): Observable<string> {
+        return this.http.post(`${environment.apiUrl}/auth/signup`, signup, {responseType: 'text'})
             .pipe(map(token => {
                 this.storage.set(this.jwtTokenKeyStorage, token);
                 this.token = token;
