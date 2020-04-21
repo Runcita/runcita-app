@@ -4,6 +4,7 @@ import {ChangeEmailPage} from "../page-settings/change-email/change-email.page";
 import {ChangePasswordPage} from "../page-settings/change-password/change-password.page";
 import {DeleteAccountPage} from "../page-settings/delete-account/delete-account.page";
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {AuthenticationService} from "../../_services/authentification.service";
 
 @Component({
   selector: 'app-settings',
@@ -15,7 +16,7 @@ export class SettingsPage implements OnInit {
   public toggleDark: boolean = false;
   public toggleNotification: boolean = false;
 
-  constructor(private modalController: ModalController, private statusBar: StatusBar) { }
+  constructor(private modalController: ModalController, private statusBar: StatusBar, public authService: AuthenticationService) { }
 
   public dismissModalSettings(): void {
     this.modalController.dismiss();

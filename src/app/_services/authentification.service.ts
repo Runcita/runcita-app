@@ -94,7 +94,7 @@ export class AuthenticationService {
 
     public logout(): void {
         this.removeJwtStorage().then(() => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/signin']);
         });
     }
 }
