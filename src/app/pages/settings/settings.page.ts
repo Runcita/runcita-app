@@ -22,6 +22,11 @@ export class SettingsPage implements OnInit {
     this.modalController.dismiss();
   }
 
+  public logout(): void {
+    this.dismissModalSettings();
+    this.authService.logout()
+  }
+
   public async modalChangeEmail(): Promise<void> {
     const modal = await this.modalController.create({
       component: ChangeEmailPage,

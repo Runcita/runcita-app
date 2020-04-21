@@ -12,7 +12,7 @@
     <ion-list-header mode="ios">Parametres du compte</ion-list-header>
     <ion-item button detail (click)="modalChangeEmail()">Changer l'email</ion-item>
     <ion-item button detail (click)="modalChangePassword()">Changer le mot de passe</ion-item>
-    <ion-item button detail (click)="dismissModalSettings(); authService.logout()">Déconnexion</ion-item>
+    <ion-item button detail (click)="logout()">Déconnexion</ion-item>
     <ion-item button detail (click)="modaleDeleteAccount()"><ion-text color="danger">Supprimer le compte</ion-text></ion-item>
     <ion-list-header mode="ios">Parametres d'application</ion-list-header>
     <ion-item>
