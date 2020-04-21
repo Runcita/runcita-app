@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModalCreateActivity()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Créer une activité</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-create-activity">
+  <img src="../../assets/banner/bannerRunningLevel.jpg" id="banner-create-activity">
+  <form (ngSubmit)="createActivity()" class="form-create-activity">
+    <mat-form-field class="input-full-width" (click)="modalRunningLevel()">
+      <mat-label>Niveau de l'activité <ion-text color="danger">*</ion-text></mat-label>
+      <input readonly matInput maxlength="100" type="text" [formControl]="runningLevelFormControl" [errorStateMatcher]="matcher" [(ngModel)]="activity.runningLevel.name" name="runningLevel">
+      <img *ngIf="activity.runningLevel.name" width="40px" height="40px" matSuffix src="../../assets/runningLevel/{{activity.runningLevel.name}}.png">
+      <mat-error *ngIf="runningLevelFormControl.hasError('required')">
+        Le niveau de l'activité est requis
+      </mat-error>
+    </mat-form-field>
+    <ion-item lines="none">
+      <ion-icon slot="start" name="{{activity.after ? 'wine' : 'wine-outline'}}"></ion-icon>
+      <ion-label>After</ion-label>
+      <ion-toggle (ionChange)="updateAfter($event)"></ion-toggle>
+    </ion-item>
+    <mat-form-field class="input-full-width">
+      <mat-label>Date de l'activité <ion-text color="danger">*</ion-text></mat-label>
+      <input readonly matInput [matDatepicker]="picker" [(ngModel)]="choiceDate" [formControl]="dateFormControl" [errorStateMatcher]="matcher">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="dateFormControl.hasError('required')">
+        La date est requise
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-full-width" (click)="modalSearchCity()">
+      <mat-label>Ville où a lieu l'activité <ion-text color="danger">*</ion-text></mat-label>
+      <input readonly matInput maxlength="100" type="text" [formControl]="cityFormControl" [errorStateMatcher]="matcher" [(ngModel)]="activity.city.name">
+      <mat-error *ngIf="cityFormControl.hasError('required')">
+        La ville est requise
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-full-width">
+      <mat-label>Type d'activité <ion-text color="danger">*</ion-text></mat-label>
+      <input matInput maxlength="100" type="text" [formControl]="runningTypeFormControl" [errorStateMatcher]="matcher" [(ngModel)]="activity.runningType.name" name="runningLevel">
+      <mat-error *ngIf="runningTypeFormControl.hasError('required')">
+        Le type d'activité est requis
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="3" maxlength="300" #desc [(ngModel)]="activity.description" name="desc"></textarea>
+      <mat-hint align="start">Une activité avec une description est généralement plus consulté</mat-hint>
+      <mat-hint align="end">{{desc.value.length}} / 300</mat-hint>
+    </mat-form-field>
+    <ion-button class="button-ok" [disabled]="!(runningTypeFormControl.valid &&
+        runningLevelFormControl.valid &&
+        cityFormControl.valid &&
+        dateFormControl.valid
+        )" type="submit" expand="block">Enregistrer</ion-button>
+  </form>
+</ion-content>
