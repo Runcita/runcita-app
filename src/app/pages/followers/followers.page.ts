@@ -39,13 +39,13 @@ export class FollowersPage implements OnInit {
       Object.assign(new User(), {
         lastName: 'Liagre',
         firstName: 'Justine',
-        id: '2',
+        id: '0',
         picture: '../../assets/mock/profile.jpg'
       }),
       Object.assign(new User(), {
         lastName: 'Landschoot',
         firstName: 'Alicia',
-        id: '3',
+        id: '1',
         picture: '../../assets/mock/profile.jpg'
       }),
       Object.assign(new User(), {
