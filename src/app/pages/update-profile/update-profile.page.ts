@@ -20,7 +20,7 @@ export class UpdateProfilePage implements OnInit {
   public customActionSheetSexe: object = {
     header: 'Selectionnez votre sexe',
   };
-  public choiceBirthday: string;
+  public choiceBirthday: Date;
   public userUpdated: User;
 
   public nameFormControl: FormControl = new FormControl('', [
@@ -75,7 +75,7 @@ export class UpdateProfilePage implements OnInit {
 
   public updateProfile(): void {
     this.user = this.userUpdated;
-    this.user.birthday = new Date(this.choiceBirthday).getTime();
+    this.user.birthday = this.choiceBirthday.getTime();
     console.log(this.user)
     this.dismissModalUpdateProfile();
   }
@@ -138,7 +138,7 @@ export class UpdateProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    this.choiceBirthday = new Date(this.user.birthday).toISOString().substr(0,10);
+    this.choiceBirthday = new Date(this.user.birthday);
     this.userUpdated = Object.assign(new User(), {
       firstName: this.user.firstName,
       lastName: this.user.lastName,
